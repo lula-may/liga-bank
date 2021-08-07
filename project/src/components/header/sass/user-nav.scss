@@ -20,6 +20,12 @@
   margin-right: 10px;
 }
 
+@media (max-width: $tablet-width) {
+  .user-nav__label {
+    display: none;
+  }
+}
+
 @media (max-width: $mobile-width) {
   .user-nav__icon {
     width: 15px;
@@ -28,5 +34,9 @@
 
   .user-nav__link {
     justify-content: flex-start;
+  }
+
+  .user-nav__label {
+    display: inline;
   }
 }
