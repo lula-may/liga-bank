@@ -1,13 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './style.scss';
 
 import Logo from '../logo/logo';
 
-function Header () {
+function Header ({isMobile}) {
   return (
     <header className="main-header main-header--close">
       <div className="main-header__wrapper">
-        <Logo className="main-header__logo" />
+        <Logo className="main-header__logo" isMobile={isMobile} />
         <button className="main-header__button main-header__button--open">Открыть меню</button>
         <button className="main-header__button main-header__button--close">Закрыть меню</button>
 
@@ -40,5 +42,9 @@ function Header () {
 
   );
 }
+
+Header.propTypes = {
+  isMobile: PropTypes.bool.isRequired,
+};
 
 export default Header;

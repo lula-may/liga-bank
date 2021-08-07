@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Logo from '../logo/logo';
 import './style.scss';
 
-function Footer() {
+function Footer({isMobile}) {
   return (
     <footer className="page__footer main-footer">
       <div className="main-footer__wrapper">
         <div className="main-footer__column main-footer__column--left">
-          <Logo className="main-footer__logo" />
+          <Logo className="main-footer__logo" isMobile={isMobile} />
           <div className="main-footer__item main-footer__item--info">
             <address className="main-footer__text">150015, г. Москва, ул. Московская, д. 32</address>
             <p className="main-footer__text">Генеральная лицензия Банка России №1050</p>
@@ -73,5 +74,9 @@ function Footer() {
 
   );
 }
+
+Footer.propTypes = {
+  isMobile: PropTypes.bool.isRequired,
+};
 
 export default Footer;

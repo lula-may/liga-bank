@@ -16,9 +16,6 @@
 }
 
 .main-header__logo {
-  display: block;
-  width: 150px;
-  height: auto;
   margin-right: 110px;
   margin-bottom: 15px;
 }
@@ -43,13 +40,7 @@
   }
 
   .main-header__logo {
-    width: 133px;
     margin-right: 66px;
-
-    img {
-      width: 133px;
-      height: 22px;
-    }
   }
 
   .main-header__user-nav {
