@@ -1,0 +1,18 @@
+.button {
+  @include button-reset();
+
+  text-align: center;
+  text-decoration: none;
+
+  border-radius: 4px;
+
+  &:hover,
+  &:focus {
+  box-shadow: 0 10px 8px -8px $text-clr-input;
+  transform: translateY(-4px);
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
