@@ -2,6 +2,8 @@ import React, {Fragment, useState, useEffect, useCallback} from 'react';
 
 import Footer from '../footer/footer';
 import Header from '../header/header';
+import Slider from '../slider/slider';
+import {Navigation} from '../../const';
 
 const TABLET_VIEWPORT_WIDTH = 768;
 const isMobileViewport = () => window.innerWidth < TABLET_VIEWPORT_WIDTH;
@@ -17,8 +19,8 @@ function Main() {
 
   return (
     <Fragment>
-      <Header isMobile={isMobile} />
-      <h1>Hello, world!</h1>
+      <Header currentPage={Navigation.CREDIT} isMobile={isMobile} />
+      <Slider />
       <Footer isMobile={isMobile} />
     </Fragment>
   );

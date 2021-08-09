@@ -1,0 +1,154 @@
+.slide {
+  background-position: center bottom;
+  background-size: 1366px 400px;
+  background-repeat: no-repeat;
+
+  h3 {
+    margin: 0;
+    margin-bottom: 8px;
+
+    font-size: $font-size-basic * 3;
+    line-height: normal;
+    font-weight: bold;
+  }
+
+  p {
+    margin: 0;
+    margin-bottom: 33px;
+
+    font-size: $font-size-label;
+    line-height: normal;
+    font-weight: normal;
+    color: $text-clr-light;
+  }
+
+  .slide__button {
+    width: max-content;
+
+    font-size: $font-size-basic;
+    line-height: normal;
+    font-weight: 500;
+  }
+
+  &--dark {
+    h3 {
+      color: $bg-light
+    }
+
+    p {
+      color: $text-clr-light;
+    }
+
+    .slide__button {
+      padding: 15px 36px 16px;
+      color: $text-clr-basic;
+      background-color: $bg-light;
+    }
+  }
+
+  &--light {
+    h3 {
+      color: $text-clr-basic;
+    }
+
+    p {
+      color: $text-clr-slider;
+    }
+
+    .slide__button {
+      padding: 15px 48px 16px;
+      color: $bg-light;
+      background-color: $bg-dark;
+    }
+  }
+
+  &--1 {
+    background-color: $bg-dark;
+    background-image: url("../img/cards.png");
+
+    @media (min-resolution: 2dppx) {
+    background-image: url("../img/cards@2x.png");
+    }
+  }
+
+  &--2 {
+    background-color: $bg-slide-2;
+    background-image: url("../img/slide-2.jpg");
+
+    @media (min-resolution: 2dppx) {
+      background-image: url("../img/slide-2@2x.jpg");
+      }
+  }
+
+  &--3 {
+    background-color: $bg-slide-3;
+    background-image: url("../img/slide-3.jpg");
+
+    @media (min-resolution: 2dppx) {
+      background-image: url("../img/slide-3@2x.jpg");
+      }
+  }
+}
+
+.slide__wrapper {
+  @include container();
+
+  padding: 100px 170px;
+}
+
+@media (max-width: $tablet-width) {
+  .slide {
+    background-size: 768px 300px;
+
+    &--1 {
+      background-image: url("../img/cards-tablet.jpg");
+
+      @media (min-resolution: 2dppx) {
+      background-image: url("../img/cards-tablet@2x.jpg");
+      }
+
+      .slide__button {
+        padding: 18px 31px;
+      }
+    }
+
+    &--2 {
+      background-image: url("../img/slide-2-tablet.jpg");
+
+      @media (min-resolution: 2dppx) {
+        background-image: url("../img/slide-2-tablet@2x.jpg");
+      }
+    }
+
+    &--3 {
+      background-image: url("../img/slide-3-tablet.jpg");
+
+      @media (min-resolution: 2dppx) {
+        background-image: url("../img/slide-3-tablet@2x.jpg");
+      }
+
+      .slide__button {
+        padding: 18px 31px;
+      }
+    }
+
+    h3 {
+      margin-bottom: 6px;
+      font-size: $font-size-bold-tbl;
+    }
+
+    p {
+      margin-bottom: 28px;
+      font-size: $font-size-basic;
+    }
+
+    .slide__button {
+      padding: 18px 31px;
+      font-size: $font-size-label;
+    }
+  }
+
+  .slide__wrapper {
+    padding: 60px 11.2%;
+  }
+}
