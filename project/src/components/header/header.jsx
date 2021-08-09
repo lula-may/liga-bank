@@ -1,13 +1,14 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './style.scss';
 import Logo from '../logo/logo';
 import {getClassName} from '../../utils';
-
+import {AppRoute, HEADER_LINKS} from '../../const';
 const ESC_KEY = 'Escape';
 
-function Header({isMobile}) {
+function Header({currentPage, isMobile}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = useCallback(() => setIsMenuOpen(false), [setIsMenuOpen]);
@@ -50,26 +51,21 @@ function Header({isMobile}) {
         <div className="main-header__container">
           <nav className="main-header__nav main-nav">
             <ul className="main-nav__list">
-              <li className="main-nav__item">
-                <a href="#" className="main-nav__link">Услуги</a>
-              </li>
-              <li className="main-nav__item">
-                <a href="#" className="main-nav__link">Рассчитать кредит</a>
-              </li>
-              <li className="main-nav__item">
-                <a className="main-nav__link main-nav__link">Конвертер валют</a>
-              </li>
-              <li className="main-nav__item">
-                <a href="#" className="main-nav__link">Контакты</a>
-              </li>
+              {HEADER_LINKS.map(({link, title}) => (
+                <li key={link} className="main-nav__item">
+                  {(currentPage.title === title)
+                    ? <span className="main-nav__link">{title}</span>
+                    : <Link to={link} className="main-nav__link">{title}</Link>}
+                </li>
+              ))}
             </ul>
           </nav>
           <ul className="main-header__user-nav user-nav">
             <li className="user-nav__item">
-              <a href="#" className="user-nav__link" aria-label="Войти в Интернет-банк">
+              <Link to={AppRoute.LOGIN} className="user-nav__link" aria-label="Войти в Интернет-банк">
                 <svg className="user-nav__icon" width="20" height="22"><use xlinkHref="#login"></use></svg>
                 <span className="user-nav__label">Войти в Интернет-банк</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -80,6 +76,11 @@ function Header({isMobile}) {
 }
 
 Header.propTypes = {
+  currentPage:  PropTypes.shape({
+    link: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+
   isMobile: PropTypes.bool.isRequired,
 };
 

@@ -1,7 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Logo from '../logo/logo';
+import { FOOTER_LINKS } from '../../const';
 import './style.scss';
 
 function Footer({isMobile}) {
@@ -17,10 +19,11 @@ function Footer({isMobile}) {
           </div>
           <div className="main-footer__item main-footer__item--nav">
             <ul className="footer-nav">
-              <li className="footer-nav__item"><a href="#" className="footer-nav__link">Услуги</a></li>
-              <li className="footer-nav__item"><a href="#" className="footer-nav__link">Рассчитать кредит</a></li>
-              <li className="footer-nav__item"><a href="#" className="footer-nav__link">Контакты</a></li>
-              <li className="footer-nav__item"><a href="#" className="footer-nav__link">Задать вопрос</a></li>
+              {FOOTER_LINKS.map(({link, title}) => (
+                <li key={link} className="footer-nav__item">
+                  <Link to={link} className="footer-nav__link">{title}</Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -47,24 +50,24 @@ function Footer({isMobile}) {
           <div className="main-footer__item main-footer__item--social social">
             <ul className="social__list">
               <li className="social__item">
-                <a href="#" className="social__link" aria-label="Лига Банк в фейсбук">
+                <Link to="/" className="social__link" aria-label="Лига Банк в фейсбук">
                   <svg className="icon" width="9" height="16"><use xlinkHref="#fb"></use></svg>
-                </a>
+                </Link>
               </li>
               <li className="social__item">
-                <a href="#" className="social__link" aria-label="Лига Банк в Инстаграм">
+                <Link to="/" className="social__link" aria-label="Лига Банк в Инстаграм">
                   <svg className="icon" width="16" height="16"><use xlinkHref="#insta"></use></svg>
-                </a>
+                </Link>
               </li>
               <li className="social__item">
-                <a href="#" className="social__link" aria-label="Лига Банк в Твиттере">
+                <Link to="/" className="social__link" aria-label="Лига Банк в Твиттере">
                   <svg className="icon" width="16" height="13"><use xlinkHref="#twitter"></use></svg>
-                </a>
+                </Link>
               </li>
               <li className="social__item">
-                <a href="#" className="social__link" aria-label="Лига Банк на Ютюб">
+                <Link to="/" className="social__link" aria-label="Лига Банк на Ютюб">
                   <svg className="icon" width="16" height="13"><use xlinkHref="#youtube"></use></svg>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
