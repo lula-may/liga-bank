@@ -45,13 +45,13 @@ export default function Slider() {
         <div className="swiper-slide slide slide--2 slide--light">
           <div className="slide__wrapper">
             <h3>Лига Банк</h3>
-            <p>Ваша уверенность в завтрашнем дне</p>
+            <p>Ваша уверенность в&nbsp;завтрашнем дне</p>
           </div>
         </div>
         <div className="swiper-slide slide slide--3 slide--light">
           <div className="slide__wrapper">
             <h3>Лига Банк</h3>
-            <p>Ваша уверенность в завтрашнем дне</p>
+            <p>Всегда рядом</p>
             <Link class="slide__button button" to="/">Найти отделение</Link>
           </div>
         </div>

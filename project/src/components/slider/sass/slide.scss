@@ -1,9 +1,10 @@
 .slide {
   background-position: center bottom;
-  background-size: 1366px 400px;
+  background-size: 1366px 400px, 100%;
   background-repeat: no-repeat;
 
   h3 {
+    max-width: 70%;
     margin: 0;
     margin-bottom: 8px;
 
@@ -13,6 +14,7 @@
   }
 
   p {
+    max-width: 50%;
     margin: 0;
     margin-bottom: 33px;
 
@@ -72,11 +74,10 @@
   }
 
   &--2 {
-    background-color: $bg-slide-2;
-    background-image: url("../img/slide-2.jpg");
+    background-image: url("../img/slide-2.jpg"), $slide-2-gradient;
 
     @media (min-resolution: 2dppx) {
-      background-image: url("../img/slide-2@2x.jpg");
+      background-image: url("../img/slide-2@2x.jpg"), $slide-2-gradient;
       }
   }
 
@@ -98,9 +99,10 @@
 
 @media (max-width: $tablet-width) {
   .slide {
-    background-size: 768px 300px;
+    background-size: 768px 300px, 100%;
 
     &--1 {
+      background-position: calc(50% + 10px) bottom;
       background-image: url("../img/cards-tablet.jpg");
 
       @media (min-resolution: 2dppx) {
@@ -113,10 +115,12 @@
     }
 
     &--2 {
-      background-image: url("../img/slide-2-tablet.jpg");
+      background-image: url("../img/slide-2-tablet.jpg"),
+      $slide-2-gradient;
 
       @media (min-resolution: 2dppx) {
-        background-image: url("../img/slide-2-tablet@2x.jpg");
+        background-image: url("../img/slide-2-tablet@2x.jpg"),
+        $slide-2-gradient;
       }
     }
 
@@ -150,5 +154,50 @@
 
   .slide__wrapper {
     padding: 60px 11.2%;
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .slide {
+    background-size: 578px 226px, 100%;
+    background-position: calc(50% + 50px);
+
+    h3 {
+      font-size: $font-size-bold-mob;
+    }
+
+    p {
+      font-size: $font-size-label;
+    }
+
+    .slide__button {
+      font-size: $font-size-tablet;
+    }
+
+    &--1 {
+      background-position: calc(50% + 105px) bottom;
+
+      p {
+        max-width: 70%;
+      }
+
+      .slide__button {
+        padding: 13px 31px;
+      }
+    }
+    &--2 {
+      background-position: calc(50% - 40px) bottom, center center;
+    }
+
+    &--3 {
+      background-position: calc(50% - 60px) bottom;
+
+      .slide__button {
+        padding: 13px 37px;
+      }
+    }
+  }
+    .slide__wrapper {
+    padding: 40px 4.7% 48px;
   }
 }

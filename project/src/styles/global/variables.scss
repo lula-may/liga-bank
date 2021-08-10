@@ -7,14 +7,18 @@ $font-size-label: 16px;
 $font-size-subheading: 22px;
 $font-size-tablet: 14px;
 $font-size-bold-tbl: 46px;
+$font-size-bold-mob: 36px;
 
 // COLORS: BACKGROUND
 $bg-basic: #ffffff;
 $bg-light: #f6f7ff;
 $bg-dark: #2c36f2;
-$bg-slide-2: #e2e7f1;
+$bg-slide-2-left: #dde2ec;
+$bg-slide-2-right: #f3faff;
 $bg-slide-3: #e6f1fe;
+$bg-bullet: #2028b6;
 
+$slide-2-gradient: linear-gradient(to right, $bg-slide-2-left 0 50%, $bg-slide-2-right 50% 100%);
 
 // COLORS: BORDERS
 $clr-border-header: #c1c2ca;
