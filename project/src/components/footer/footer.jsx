@@ -3,10 +3,11 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Logo from '../logo/logo';
-import { FOOTER_LINKS } from '../../const';
+import { FOOTER_LINKS, Viewport } from '../../const';
 import './style.scss';
 
-function Footer({isMobile}) {
+function Footer({viewportType}) {
+  const isMobile = viewportType === Viewport.MOBILE;
   return (
     <footer className="page__footer main-footer">
       <div className="main-footer__wrapper">
@@ -79,7 +80,7 @@ function Footer({isMobile}) {
 }
 
 Footer.propTypes = {
-  isMobile: PropTypes.bool.isRequired,
+  viewportType: PropTypes.string.isRequired,
 };
 
 export default Footer;

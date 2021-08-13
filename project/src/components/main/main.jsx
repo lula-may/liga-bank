@@ -3,14 +3,18 @@ import React, {Fragment, useState, useEffect, useCallback} from 'react';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import Slider from '../slider/slider';
+import Services from '../services/services';
 import {Navigation} from '../../const';
-
-const TABLET_VIEWPORT_WIDTH = 768;
-const isMobileViewport = () => window.innerWidth < TABLET_VIEWPORT_WIDTH;
+import { defineViewportWidth } from '../../utils';
 
 function Main() {
-  const [isMobile, setIsMobile] = useState(isMobileViewport());
-  const changeDevice = useCallback(() => isMobileViewport() ? setIsMobile(true) : setIsMobile(false), []);
+  const [viewport, setViewport] = useState(defineViewportWidth());
+  const changeDevice = useCallback(() => {
+    const newViewport = defineViewportWidth();
+    if (newViewport !== viewport) {
+      setViewport(newViewport);
+    }
+  }, [viewport]);
 
   useEffect(() => {
     window.removeEventListener('resize', changeDevice);
@@ -19,9 +23,13 @@ function Main() {
 
   return (
     <Fragment>
-      <Header currentPage={Navigation.CREDIT} isMobile={isMobile} />
+      <Header
+        currentPage={Navigation.CREDIT}
+        viewportType={viewport}
+      />
       <Slider />
-      <Footer isMobile={isMobile} />
+      <Services viewportType={viewport}/>
+      <Footer viewportType={viewport} />
     </Fragment>
   );
 }

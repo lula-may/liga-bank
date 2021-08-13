@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import Logo from '../logo/logo';
 import {getClassName} from '../../utils';
-import {AppRoute, HEADER_LINKS} from '../../const';
+import {AppRoute, HEADER_LINKS, Viewport} from '../../const';
 const ESC_KEY = 'Escape';
 
-function Header({currentPage, isMobile}) {
+function Header({currentPage, viewportType}) {
+  const isMobile = viewportType === Viewport.MOBILE;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = useCallback(() => setIsMenuOpen(false), [setIsMenuOpen]);
@@ -40,6 +41,7 @@ function Header({currentPage, isMobile}) {
         <button
           className="main-header__button main-header__button--open"
           onClick={openMenu}
+          disabled={isMenuOpen}
         >Открыть меню
         </button>
         <button
@@ -81,7 +83,7 @@ Header.propTypes = {
     title: PropTypes.string.isRequired,
   }).isRequired,
 
-  isMobile: PropTypes.bool.isRequired,
+  viewportType: PropTypes.string.isRequired,
 };
 
 export default Header;
