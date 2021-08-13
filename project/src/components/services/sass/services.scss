@@ -1,0 +1,6 @@
+.services {
+  margin-bottom: 100px;
+}
+.services__container {
+  @include container();
+}

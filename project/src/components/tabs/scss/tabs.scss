@@ -1,0 +1,42 @@
+.tabs {
+  @include list-reset();
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(93px, auto);
+}
+
+.tabs__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: inherit;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  &--active {
+    background-color: $bg-light;
+  }
+
+  h3 {
+    font-size: $font-size-basic;
+    line-height: normal;
+    color: $text-clr-tabs;
+    font-weight: 500;
+  }
+}
+
+.tabs__icon {
+  width: 34px;
+  height: 30px;
+  margin-right: 10px;
+
+  color: $bg-icon;
+}
+
+@media (max-width: $tablet-width) {
+  .tabs {
+    display: none;
+  }
+}
