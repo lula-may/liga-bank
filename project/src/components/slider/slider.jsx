@@ -18,12 +18,14 @@ export default function Slider() {
       pagination={{clickable: true}}
       loop
       autoplay={{delay: 4000, disableOnInteraction: true}}
+      simulateTouch={false}
+      className="slider"
     >
       <SwiperSlide className="swiper-slide slide slide--1 slide--dark">
         <div className="slide__wrapper">
           <h3>Лига Банк</h3>
           <p>Кредиты на любой случай</p>
-          <Link class="slide__button  button" to="/">Рассчитать кредит</Link>
+          <Link className="slide__button  button" to="/">Рассчитать кредит</Link>
         </div>
       </SwiperSlide>
       <SwiperSlide className="swiper-slide slide slide--2 slide--light">
@@ -36,7 +38,7 @@ export default function Slider() {
         <div className="slide__wrapper">
           <h3>Лига Банк</h3>
           <p>Всегда рядом</p>
-          <Link class="slide__button button" to="/">Найти отделение</Link>
+          <Link className="slide__button button" to="/">Найти отделение</Link>
         </div>
       </SwiperSlide>
     </Swiper>
