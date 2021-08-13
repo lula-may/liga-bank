@@ -36,4 +36,41 @@ const HEADER_LINKS = [Navigation.SERVICES, Navigation.CREDIT, Navigation.CURRENC
 
 const FOOTER_LINKS = [Navigation.SERVICES, Navigation.CREDIT, Navigation.CONTACTS, Navigation.QUESTION];
 
-export {AppRoute, HEADER_LINKS, FOOTER_LINKS, Navigation};
+const TabType = {
+  DEPOSIT: 'deposit',
+  CREDIT: 'credit',
+  INSURANCE: 'insurance',
+  SERVICES: 'services',
+};
+
+const TabTypeToData = {
+  credit: {
+    title: 'Кредиты',
+    imgId: '#cards',
+  },
+  deposit: {
+    title: 'Вклады',
+    imgId: '#vault',
+  },
+  insurance: {
+    title: 'Страхование',
+    imgId: '#security',
+  },
+  services: {
+    title: 'Онлайн-сервисы',
+    imgId: '#phone',
+  },
+};
+
+const Viewport = {
+  DESKTOP: 'desktop',
+  TABLET: 'tablet',
+  MOBILE: 'mobile',
+};
+
+const Breakpoint = {
+  DESKTOP: 1024,
+  TABLET: 768,
+};
+
+export {AppRoute, Breakpoint, HEADER_LINKS, FOOTER_LINKS, Navigation, TabType, TabTypeToData, Viewport};
