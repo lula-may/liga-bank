@@ -12,6 +12,7 @@
 
   border: 1px solid $text-clr-basic;
   border-radius: 4px;
+  cursor: pointer;
 
   &--open {
     border-bottom-right-radius: 0;
@@ -43,6 +44,7 @@
 
 .purpose__option {
   padding: 19px 24px;
+  cursor: pointer;
 
   &:not(:last-child) {
     border-bottom: 1px solid $clr-border-header;
