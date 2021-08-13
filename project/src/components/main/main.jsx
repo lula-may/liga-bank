@@ -4,6 +4,7 @@ import Footer from '../footer/footer';
 import Header from '../header/header';
 import Slider from '../slider/slider';
 import Services from '../services/services';
+import CreditForm from '../credit-form/credit-form';
 import {Navigation} from '../../const';
 import { defineViewportWidth } from '../../utils';
 
@@ -29,6 +30,7 @@ function Main() {
       />
       <Slider />
       <Services viewportType={viewport}/>
+      <CreditForm />
       <Footer viewportType={viewport} />
     </Fragment>
   );

@@ -1,0 +1,39 @@
+.credit-form {
+  color: $text-clr-basic;
+
+  background-color: $bg-basic;
+}
+
+.credit-form__wrapper {
+  @include container();
+}
+
+.credit-form__title {
+  margin-bottom: 56px;
+
+  font-size: $font-size-heading;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.credit-form__step {
+  margin-bottom: 32px;
+}
+
+@media (max-width: $tablet-width) {
+  .credit-form__title {
+    margin-bottom: 34px;
+    font-size: $font-size-label * 2;
+  }
+
+  .credit-form__step {
+    margin-bottom: 34px;
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .credit-form__title {
+    margin-bottom: 28px;
+    font-size: $font-size-subheading;
+  }
+}

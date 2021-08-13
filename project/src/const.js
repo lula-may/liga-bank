@@ -36,6 +36,11 @@ const HEADER_LINKS = [Navigation.SERVICES, Navigation.CREDIT, Navigation.CURRENC
 
 const FOOTER_LINKS = [Navigation.SERVICES, Navigation.CREDIT, Navigation.CONTACTS, Navigation.QUESTION];
 
+const CreditType = {
+  AUTO: 'auto',
+  HOME: 'home',
+};
+
 const TabType = {
   DEPOSIT: 'deposit',
   CREDIT: 'credit',
@@ -73,4 +78,4 @@ const Breakpoint = {
   TABLET: 768,
 };
 
-export {AppRoute, Breakpoint, HEADER_LINKS, FOOTER_LINKS, Navigation, TabType, TabTypeToData, Viewport};
+export {AppRoute, Breakpoint, CreditType, HEADER_LINKS, FOOTER_LINKS, Navigation, TabType, TabTypeToData, Viewport};
