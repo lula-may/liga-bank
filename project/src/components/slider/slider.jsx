@@ -25,7 +25,7 @@ export default function Slider() {
         <div className="slide__wrapper">
           <h3>Лига Банк</h3>
           <p>Кредиты на любой случай</p>
-          <Link className="slide__button  button" to="/">Рассчитать кредит</Link>
+          <a className="slide__button  button" href="#calculator">Рассчитать кредит</a>
         </div>
       </SwiperSlide>
       <SwiperSlide className="swiper-slide slide slide--2 slide--light">

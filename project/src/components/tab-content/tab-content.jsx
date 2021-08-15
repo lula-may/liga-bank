@@ -1,11 +1,10 @@
 import React, {useMemo} from 'react';
-import {Link} from 'react-router-dom';
 import {Service} from '../../data/services';
 
 import PropTypes from 'prop-types';
 import './style.scss';
 import { getClassName } from '../../utils';
-import {AppRoute, TabType} from '../../const';
+import {TabType} from '../../const';
 
 function TabContent({tabName, viewportType}) {
   const {title, features, imageUrl} = Service[tabName];
@@ -26,7 +25,7 @@ function TabContent({tabName, viewportType}) {
             ))}
           </ul>
           {isCreditTab ?
-            <p>Рассчитайте ежемесячный платеж и ставку по кредиту воспользовавшись нашим <Link to={AppRoute.ROOT}>кредитным калькулятором</Link>
+            <p>Рассчитайте ежемесячный платеж и ставку по кредиту воспользовавшись нашим <a href="#calculator">кредитным калькулятором</a>
             </p>
             : <button className="service__button button">Узнать подробнее</button>}
         </div>
