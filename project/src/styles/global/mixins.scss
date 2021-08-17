@@ -45,11 +45,17 @@
 // ELEMENT STYLES
 @mixin field() {
   position: relative;
-  display: block;
-  padding: 19px 24px;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 24px;
 
   font-weight: 500;
 
   border: 1px solid $text-clr-basic;
   border-radius: 4px;
+
+  @media (max-width: $mobile-width) {
+    padding: 0 15px;
+  }
 }
