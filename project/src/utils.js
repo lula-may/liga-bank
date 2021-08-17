@@ -11,4 +11,13 @@ const defineViewportWidth = () => {
   return Viewport.TABLET;
 };
 
-export {defineViewportWidth, getClassName};
+const clearNumber = (str) => Number(str.replace(/\D/g, ''));
+
+const isValidValue = (value, min, max) => {
+  if (value < min || value > max || isNaN(value)) {
+    return false;
+  }
+  return true;
+};
+
+export {clearNumber, defineViewportWidth, getClassName, isValidValue};

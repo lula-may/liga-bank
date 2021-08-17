@@ -1,4 +1,85 @@
-.field {
-  @include field();
+.price-field {
+  input {
+    width: 40%;
+    padding-right: 5px;
+
+    font:inherit;
+    line-height: inherit;
+    text-align: right;
+
+    border: none;
+    background-color: transparent
+  }
+}
+.price-field--invalid {
+  .price-field__wrapper {
+    border-color: $text-clr-error;
+  }
+
+  .price-field__error {
+    display: inline;
+  }
 }
 
+.price-field__label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: $font-size-label;
+  line-height: 1.4;
+  color: $text-clr-label;
+}
+
+.price-field__wrapper {
+  @include field();
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.price-field__button {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+
+  &--minus {
+    margin-right: auto;
+  }
+  &--plus {
+    margin-left: auto;
+  }
+}
+
+.price-field__icon {
+  width: 16px;
+  height: auto;
+}
+
+.price-field__units {
+  width: 40%;
+}
+
+.price-field__error {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 80px);
+
+  font-size: $font-size-tablet;
+  line-height: 1.4;
+  color: $text-clr-error;
+}
+
+.price-field__info {
+  display: block;
+  font-size: $font-size-tablet;
+  line-height: 1.4;
+  color: $text-clr-footer;
+}
+
+@media (max-width: $tablet-width) {
+  .price-field__wrapper {
+    font-size: $font-size-label;
+  }
+}

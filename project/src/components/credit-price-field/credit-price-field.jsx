@@ -1,54 +1,84 @@
-import React, {useMemo} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
+import {clearNumber, getClassName, isValidValue} from '../../utils';
 
 function CreditPriceField(props) {
   const {
-    priceParams: {min, max, label},
+    priceParams: {min, max, label, step},
     currentPrice,
-    onMinusClick,
-    onPlusClick,
     onChange,
   } = props;
+
+  const [isValid, setIsValid] = useState(true);
   const infoText = useMemo(() => `От ${min.toLocaleString('ru-RU')} до ${max.toLocaleString('ru-RU')}`, [max, min]);
 
+  const handlePriceChange = useCallback((evt) => {
+    const newValue = clearNumber(evt.target.value);
+    if (newValue !== currentPrice) {
+      const isNewValueValid = isValidValue(newValue, min, max);
+      if (isValid !== isNewValueValid) {
+        setIsValid(isNewValueValid);
+      }
+      onChange(newValue);
+    }
+  }, [currentPrice, isValid, max, min, onChange]);
+
+  const handleMinusClick = useCallback((evt) => {
+    evt.preventDefault();
+    let newPrice = currentPrice - step;
+    newPrice = (newPrice < min) ? min : newPrice;
+    if (newPrice !== currentPrice) {
+      onChange(newPrice);
+    }
+  }, [currentPrice, min, step, onChange]);
+
+  const handlePlusClick = useCallback((evt) => {
+    evt.preventDefault();
+    let newPrice = Number(currentPrice) + step;
+    newPrice = (newPrice > max) ? max : newPrice;
+    if (newPrice !== currentPrice) {
+      onChange(newPrice);
+    }
+  }, [currentPrice, max, step, onChange]);
+
   return (
-    <div className="price-field">
+    <div className={getClassName('price-field', !isValid && 'price-field--invalid')}>
       <label className="price-field__label" htmlFor="price">{label}</label>
       <div className="price-field__wrapper">
-        <input
-          id="price"
-          type="number"
-          name="price"
-          min={min}
-          max={max}
-          onChange={onChange}
-          value={currentPrice}
-        />
         <button
-          className="price-field__button"
+          className="price-field__button price-field__button--minus"
           type="button"
           aria-label="Уменьшить"
-          onClick={onMinusClick}
+          onClick={handleMinusClick}
+          disabled={currentPrice === min}
         >
-          <svg className="button__icon" width="16" height="2">
+          <svg className="price-field__icon" width="16" height="2">
             <use xlinkHref="#minus"/>
           </svg>
         </button>
+        <input
+          id="price"
+          type="text"
+          name="price"
+          onChange={handlePriceChange}
+          value={currentPrice.toLocaleString('ru-RU')}
+        />
+        <span className="price-field__units">рублей</span>
+        <span className="price-field__error">некорректное значение</span>
         <button
-          className="price-field__button"
+          className="price-field__button price-field__button--plus"
           type="button"
           aria-label="Увеличить"
-          onClick={onPlusClick}
+          onClick={handlePlusClick}
+          disabled={currentPrice === max}
         >
-          <svg className="button__icon" width="16" height="16">
+          <svg className="price-field__icon" width="16" height="16">
             <use xlinkHref="#plus"/>
           </svg>
         </button>
-        <span className="field__units">рублей</span>
-        <span className="price-field__error">некорректное значение</span>
       </div>
-      <span className="field__info">{infoText}</span>
+      <span className="price-field__info">{infoText}</span>
     </div>
   );
 }
@@ -56,8 +86,6 @@ function CreditPriceField(props) {
 CreditPriceField.propTypes = {
   currentPrice: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
-  onMinusClick: PropTypes.func.isRequired,
-  onPlusClick: PropTypes.func.isRequired,
   priceParams: PropTypes.shape({
     label: PropTypes.string.isRequired,
     min: PropTypes.number.isRequired,

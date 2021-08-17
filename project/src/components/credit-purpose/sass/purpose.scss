@@ -43,3 +43,9 @@
     border-bottom: 1px solid $clr-border-header;
   }
 }
+
+@media (max-width: $mobile-width) {
+  .purpose__icon {
+    right: 15px;
+  }
+}
