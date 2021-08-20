@@ -1,4 +1,5 @@
 .price-field {
+  margin-bottom: 20px;
   input {
     width: 40%;
     padding-right: 5px;
@@ -42,6 +43,8 @@
   padding: 0;
   border: none;
   background-color: transparent;
+  width: 16px;
+  height: 16px;
 
   &--minus {
     margin-right: auto;
@@ -79,7 +82,17 @@
 }
 
 @media (max-width: $tablet-width) {
+  .price-field {
+    margin-bottom: 15px;
+  }
+
   .price-field__wrapper {
     font-size: $font-size-label;
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .price-field {
+    margin-bottom: 10px;
   }
 }
