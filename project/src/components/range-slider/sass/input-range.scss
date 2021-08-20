@@ -1,0 +1,25 @@
+  .input-range__label {
+    font-family: $font-basic;
+    font-size: $font-size-tablet;
+    line-height: 1.4;
+    color: $text-clr-footer;
+  }
+
+  .input-range__track {
+    height: 1px;
+
+    &--background {
+      background-color: $clr-border-header;
+    }
+
+    &--active {
+      background-color: $bg-dark;
+    }
+  }
+
+  .input-range__slider {
+    width: 14px;
+    height: 14px;
+    margin-top: -0.45rem;
+    background-color: $bg-dark;
+  }

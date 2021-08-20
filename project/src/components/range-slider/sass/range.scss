@@ -1,0 +1,71 @@
+.range {
+  width: calc(100% - 14px);
+  margin: 8px auto;
+}
+
+.range--initial-payment {
+  .input-range__label--min,
+  .input-range__label--max {
+    display: none;
+  }
+
+  .input-range__label--value {
+    top: 0.6rem;
+  }
+}
+
+.range--period {
+  .input-range__label--value {
+    display: none;
+  }
+}
+
+.range__legend {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  font-size: $font-size-tablet;
+  line-height: 1.4;
+  color: $text-clr-footer;
+}
+
+.range-slider {
+  position: relative;
+  width: 100%;
+  height: 14px;
+  padding-top: 6px;
+  margin-bottom: 3px;
+}
+
+.range-slider__bar {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 7px;
+  width: 100%;
+  height: 1px;
+  background-color: $bg-dark;
+}
+
+.range-slider__progress {
+  position: absolute;
+  z-index: 1;
+  height: 1px;
+  top: 7px;
+  right: -14px;
+  left: 0;
+  background-color: $clr-border-header;
+}
+
+.range-slider__handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+
+  background-color: $bg-dark;
+  border-radius: 50%;
+  cursor: pointer;
+}

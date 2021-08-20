@@ -20,4 +20,21 @@ const isValidValue = (value, min, max) => {
   return true;
 };
 
-export {clearNumber, defineViewportWidth, getClassName, isValidValue};
+const getPluralNumeral = (count, formOne, formTwo, formMany) => {
+  if (count > 4 && count < 21) {
+    return formMany;
+  }
+
+  const remainder = count % 10;
+  if (remainder === 1) {
+    return formOne;
+  }
+
+  if (remainder > 1 && remainder < 5) {
+    return formTwo;
+  }
+
+  return formMany;
+};
+
+export {clearNumber, defineViewportWidth, getClassName, getPluralNumeral, isValidValue};
