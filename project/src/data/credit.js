@@ -9,13 +9,17 @@ const Credit = {
       step: 100000,
     },
     initialPayment: {
+      label: 'Первоначальный взнос',
       min: 10,
+      max: 100,
       step: 5,
       unit: '%',
     },
     period: {
+      label: 'Срок кредитования',
       min: 5,
       max: 30,
+      step: 1,
       unit: 'лет',
     },
     chekboxes: [
@@ -35,13 +39,17 @@ const Credit = {
       step: 50000,
     },
     initialPayment: {
+      label: 'Первоначальный взнос',
       min: 20,
+      max: 100,
       step: 5,
       unit: '%',
     },
     period: {
+      label: 'Срок кредитования',
       min: 1,
       max: 5,
+      step: 1,
       unit: 'лет',
     },
     chekboxes: [
