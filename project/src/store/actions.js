@@ -4,6 +4,7 @@ export const ActionType = {
   SET_FORM_STEP: 'FORM/SET_STEP',
   SET_CREDIT_TYPE: 'CREDIT/SET_CREDIT_TYPE',
   SET_INITIAL_PAYMENT: 'CREDIT/SET_INITIAL_PAYMENT',
+  SET_INITIAL_PAYMENT_RATE: 'CREDIT/SET_RATE',
   SET_PERIOD: 'CREDIT/SET_PERIOD',
   SET_TOTAL_PRICE: 'CREDIT/SET_TOTAL_PRICE',
 };
@@ -17,6 +18,10 @@ export const setCreditType = createAction(ActionType.SET_CREDIT_TYPE, (type) => 
 }));
 
 export const setInitialPayment = createAction(ActionType.SET_INITIAL_PAYMENT, (value) => ({
+  payload: value,
+}));
+
+export const setInitialPaymentRate = createAction(ActionType.SET_INITIAL_PAYMENT_RATE, (value) => ({
   payload: value,
 }));
 
