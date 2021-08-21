@@ -8,6 +8,7 @@ export const ActionType = {
   SET_PERIOD: 'CREDIT/SET_PERIOD',
   SET_VALID_STATUS: 'CREDIT/SET_VALID_STATUS',
   SET_TOTAL_PRICE: 'CREDIT/SET_TOTAL_PRICE',
+  UPDATE_INITIAL_PAYMENT: 'CREDIT/UPDATE_INITIAL_PAYMENT',
 };
 
 export const setStep = createAction(ActionType.SET_FORM_STEP, (step) => ({
@@ -37,4 +38,6 @@ export const setTotalPrice = createAction(ActionType.SET_TOTAL_PRICE, (price) =>
 export const setValidStatus = createAction(ActionType.SET_VALID_STATUS, (isValid) => ({
   payload: isValid,
 }));
+
+export const updateInitialPayment = createAction(ActionType.UPDATE_INITIAL_PAYMENT);
 

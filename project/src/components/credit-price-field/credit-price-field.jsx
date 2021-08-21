@@ -5,7 +5,7 @@ import './style.scss';
 
 import {clearNumber, getClassName, isValidValue} from '../../utils';
 import { getTotalSum, getValidityStatus } from '../../store/selectors';
-import { setTotalPrice, setValidStatus } from '../../store/actions';
+import { setTotalPrice, setValidStatus, updateInitialPayment } from '../../store/actions';
 
 function CreditPriceField(props) {
   const {
@@ -33,17 +33,22 @@ function CreditPriceField(props) {
         dispatch(setValidStatus(!isValid));
       }
       dispatch(setTotalPrice(newValue));
+      if (isNewValueValid) {
+        dispatch(updateInitialPayment());
+      }
     }
   }, [currentPrice, dispatch, isValid, max, min]);
 
   const handleMinusClick = useCallback((evt) => {
     evt.preventDefault();
     dispatch(setTotalPrice(decrementPrice()));
+    dispatch(updateInitialPayment());
   }, [decrementPrice, dispatch]);
 
   const handlePlusClick = useCallback((evt) => {
     evt.preventDefault();
     dispatch(setTotalPrice(incrementPrice()));
+    dispatch(updateInitialPayment());
   }, [incrementPrice, dispatch]);
 
   return (
