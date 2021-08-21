@@ -1,17 +1,25 @@
-import React, {useCallback, useMemo, useState} from 'react';
+import React, {useCallback, useMemo} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import './style.scss';
+
 import {clearNumber, getClassName, isValidValue} from '../../utils';
+import { getTotalSum, getValidityStatus } from '../../store/selectors';
+import { setTotalPrice, setValidStatus } from '../../store/actions';
 
 function CreditPriceField(props) {
   const {
     priceParams: {min, max, label, step},
-    currentPrice,
-    onChange,
   } = props;
 
-  const [isValid, setIsValid] = useState(true);
+  const isValid = useSelector(getValidityStatus);
+  const currentPrice = useSelector(getTotalSum);
+  const dispatch = useDispatch();
+
   const infoText = useMemo(() => `От ${min.toLocaleString('ru-RU')} до ${max.toLocaleString('ru-RU')}`, [max, min]);
+
+  const isMinPrice = currentPrice === min;
+  const isMaxPrice = currentPrice === max;
 
   const incrementPrice = useCallback(() => (currentPrice + step > max) ? max : currentPrice + step, [currentPrice, max, step]);
 
@@ -22,21 +30,21 @@ function CreditPriceField(props) {
     if (newValue !== currentPrice) {
       const isNewValueValid = isValidValue(newValue, min, max);
       if (isValid !== isNewValueValid) {
-        setIsValid(isNewValueValid);
+        dispatch(setValidStatus(!isValid));
       }
-      onChange(newValue);
+      dispatch(setTotalPrice(newValue));
     }
-  }, [currentPrice, isValid, max, min, onChange]);
+  }, [currentPrice, dispatch, isValid, max, min]);
 
   const handleMinusClick = useCallback((evt) => {
     evt.preventDefault();
-    onChange(decrementPrice());
-  }, [decrementPrice, onChange]);
+    dispatch(setTotalPrice(decrementPrice()));
+  }, [decrementPrice, dispatch]);
 
   const handlePlusClick = useCallback((evt) => {
     evt.preventDefault();
-    onChange(incrementPrice());
-  }, [incrementPrice, onChange]);
+    dispatch(setTotalPrice(incrementPrice()));
+  }, [incrementPrice, dispatch]);
 
   return (
     <div className={getClassName('price-field', !isValid && 'price-field--invalid')}>
@@ -47,7 +55,7 @@ function CreditPriceField(props) {
           type="button"
           aria-label="Уменьшить"
           onClick={handleMinusClick}
-          disabled={currentPrice === min}
+          disabled={isMinPrice}
         >
           <svg className="price-field__icon" width="16" height="2">
             <use xlinkHref="#minus"/>
@@ -67,7 +75,7 @@ function CreditPriceField(props) {
           type="button"
           aria-label="Увеличить"
           onClick={handlePlusClick}
-          disabled={currentPrice === max}
+          disabled={isMaxPrice}
         >
           <svg className="price-field__icon" width="16" height="16">
             <use xlinkHref="#plus"/>
@@ -80,8 +88,6 @@ function CreditPriceField(props) {
 }
 
 CreditPriceField.propTypes = {
-  currentPrice: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
   priceParams: PropTypes.shape({
     label: PropTypes.string.isRequired,
     min: PropTypes.number.isRequired,

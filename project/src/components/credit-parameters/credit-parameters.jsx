@@ -1,4 +1,5 @@
 import React, {useCallback} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import CreditPriceField from '../credit-price-field/credit-price-field';
@@ -6,9 +7,8 @@ import CreditRangeField from '../credit-range-field/credit-range-field';
 import RangeSlider from '../range-slider/range-slider';
 import { getPluralNumeral } from '../../utils';
 import {Credit} from '../../data/credit';
-import { useDispatch, useSelector } from 'react-redux';
 import {getTotalSum, getInitialPayment, getPaymentRate, getPeriod, getCreditType} from '../../store/selectors';
-import { setInitialPayment, setInitialPaymentRate, setPeriod, setTotalPrice } from '../../store/actions';
+import { setInitialPayment, setInitialPaymentRate, setPeriod} from '../../store/actions';
 
 const getPeriodLabel = (value) => getPluralNumeral(value, 'год', 'года', 'лет');
 
@@ -29,8 +29,6 @@ function CreditParameters({className}) {
   const getMinPayment = useCallback(() => Math.round(totalPrice * minRate / 100), [minRate, totalPrice]);
   const getMaxPayment = useCallback(() => Math.round(totalPrice * maxRate / 100), [maxRate, totalPrice]);
 
-  const onTotalPriceChange = useCallback((price) => dispatch(setTotalPrice(price)), [dispatch]);
-
   const onPaymentChange = useCallback((value) => {
     dispatch(setInitialPayment(value));
     dispatch(setInitialPaymentRate(value * 100 / totalPrice));
@@ -46,8 +44,6 @@ function CreditParameters({className}) {
     <form method="post" id="form-parameters" className={className}>
       <CreditPriceField
         priceParams={totalSum}
-        currentPrice={totalPrice}
-        onChange={onTotalPriceChange}
       />
       <CreditRangeField
         currentValue={payment}
@@ -94,7 +90,6 @@ function CreditParameters({className}) {
 
 CreditParameters.propTypes = {
   className: PropTypes.string.isRequired,
-  // credit: PropTypes.string.isRequired,
 };
 
 export default CreditParameters;
