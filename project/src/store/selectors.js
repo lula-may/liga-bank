@@ -9,3 +9,5 @@ export const getInitialPayment = (state) => state.initialPayment;
 export const getPaymentRate = (state) => state.initialPaymentRate;
 
 export const getPeriod = (state) => state.period;
+
+export const getValidityStatus = (state) => state.isValidPrice;

@@ -1,12 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Credit } from '../data/credit';
-import {setStep, setCreditType, setInitialPayment, setPeriod, setTotalPrice, setInitialPaymentRate} from './actions';
+import {setStep, setCreditType, setInitialPayment, setPeriod, setTotalPrice, setInitialPaymentRate, setValidStatus} from './actions';
 
 const initialState = {
-  formStep: 1,
   creditType: undefined,
+  formStep: 1,
   initialPayment: undefined,
   initialPaymentRate: undefined,
+  isValidPrice: true,
   period: undefined,
   totalPrice: undefined,
 };
@@ -35,6 +36,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setTotalPrice, (state, action) => {
       state.totalPrice = action.payload;
+    })
+    .addCase(setValidStatus, (state, action) => {
+      state.isValidPrice = action.payload;
     });
 });
 

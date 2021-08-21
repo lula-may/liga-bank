@@ -6,6 +6,7 @@ export const ActionType = {
   SET_INITIAL_PAYMENT: 'CREDIT/SET_INITIAL_PAYMENT',
   SET_INITIAL_PAYMENT_RATE: 'CREDIT/SET_RATE',
   SET_PERIOD: 'CREDIT/SET_PERIOD',
+  SET_VALID_STATUS: 'CREDIT/SET_VALID_STATUS',
   SET_TOTAL_PRICE: 'CREDIT/SET_TOTAL_PRICE',
 };
 
@@ -31,5 +32,9 @@ export const setPeriod = createAction(ActionType.SET_PERIOD, (period) => ({
 
 export const setTotalPrice = createAction(ActionType.SET_TOTAL_PRICE, (price) => ({
   payload: price,
+}));
+
+export const setValidStatus = createAction(ActionType.SET_VALID_STATUS, (isValid) => ({
+  payload: isValid,
 }));
 
