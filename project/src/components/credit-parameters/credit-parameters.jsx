@@ -1,50 +1,53 @@
-import React, {useCallback, useEffect, useState } from 'react';
+import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 
 import CreditPriceField from '../credit-price-field/credit-price-field';
-import {Credit} from '../../data/credit';
 import CreditRangeField from '../credit-range-field/credit-range-field';
 import RangeSlider from '../range-slider/range-slider';
 import { getPluralNumeral } from '../../utils';
+import {Credit} from '../../data/credit';
+import { useDispatch, useSelector } from 'react-redux';
+import {getTotalSum, getInitialPayment, getPaymentRate, getPeriod, getCreditType} from '../../store/selectors';
+import { setInitialPayment, setInitialPaymentRate, setPeriod, setTotalPrice } from '../../store/actions';
 
 const getPeriodLabel = (value) => getPluralNumeral(value, 'год', 'года', 'лет');
 
-function CreditParameters(props) {
-  const {className, credit} = props;
-  const {totalSum, initialPayment, period} = Credit[credit];
-  const {min: minPrice} = totalSum;
+function CreditParameters({className}) {
+  const type = useSelector(getCreditType);
+  const totalPrice = useSelector(getTotalSum);
+  const payment = useSelector(getInitialPayment);
+  const paymentRate = useSelector(getPaymentRate);
+  const term = useSelector(getPeriod);
+
+  const creditParameters = Credit[type];
+  const {totalSum, initialPayment, period} = creditParameters;
+  // const {min: minPrice} = totalSum;
   const {min: minRate, max: maxRate, label: paymentLabel} = initialPayment;
   const {min: minPeriod, max: maxPeriod, label: periodLabel} = period;
 
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [payment, setInitialPayment] = useState(0);
-  const [paymentRate, setPaymentRate] = useState(0);
-  const [term, setTerm] = useState(0);
-
+  const dispatch = useDispatch();
   const getMinPayment = useCallback(() => Math.round(totalPrice * minRate / 100), [minRate, totalPrice]);
   const getMaxPayment = useCallback(() => Math.round(totalPrice * maxRate / 100), [maxRate, totalPrice]);
 
+  const onTotalPriceChange = useCallback((price) => dispatch(setTotalPrice(price)), [dispatch]);
+
   const onPaymentChange = useCallback((value) => {
-    // setInitialPayment(value);
-    setPaymentRate(value * 100 / totalPrice);
-  }, [totalPrice]);
+    dispatch(setInitialPayment(value));
+    dispatch(setInitialPaymentRate(value * 100 / totalPrice));
+  }, [dispatch, totalPrice]);
 
-  useEffect(() => setTotalPrice(minPrice), [minPrice]);
-  useEffect(() => {
-    if (!paymentRate) {
-      setPaymentRate(minRate);
-    }}, [minRate, paymentRate]);
+  const onRateChange = useCallback((value) => {
+    dispatch(setInitialPaymentRate(value));
+    dispatch(setInitialPayment(totalPrice * value / 100));
+  }, [dispatch, totalPrice]);
 
-  useEffect(() => setInitialPayment(Math.round(totalPrice * paymentRate / 100)), [paymentRate, totalPrice]);
-
-  useEffect(() => setTerm(minPeriod), [minPeriod]);
-
+  const onPeriodChange = useCallback((value) => dispatch(setPeriod(value)), [dispatch]);
   return (
     <form method="post" id="form-parameters" className={className}>
       <CreditPriceField
         priceParams={totalSum}
         currentPrice={totalPrice}
-        onChange={setTotalPrice}
+        onChange={onTotalPriceChange}
       />
       <CreditRangeField
         currentValue={payment}
@@ -62,7 +65,7 @@ function CreditParameters(props) {
           minValue={minRate}
           maxValue={maxRate}
           name="initial-payment"
-          onRangeChange={setPaymentRate}
+          onRangeChange={onRateChange}
           step={5}
         />
       </CreditRangeField>
@@ -73,7 +76,7 @@ function CreditParameters(props) {
         label={periodLabel}
         max={maxPeriod}
         min={minPeriod}
-        onChange={setTerm}
+        onChange={onPeriodChange}
       >
         <RangeSlider
           className="range range--period"
@@ -82,7 +85,7 @@ function CreditParameters(props) {
           minValue={minPeriod}
           maxValue={maxPeriod}
           name="period"
-          onRangeChange={setTerm}
+          onRangeChange={onPeriodChange}
         />
       </CreditRangeField>
     </form>
@@ -91,7 +94,7 @@ function CreditParameters(props) {
 
 CreditParameters.propTypes = {
   className: PropTypes.string.isRequired,
-  credit: PropTypes.string.isRequired,
+  // credit: PropTypes.string.isRequired,
 };
 
 export default CreditParameters;

@@ -1,18 +1,17 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import './style.scss';
 
 import CreditPurpose from '../credit-purpose/credit-purpose';
 import CreditParameters from '../credit-parameters/credit-parameters';
+import {getFormStep} from '../../store/selectors';
 
 function CreditForm() {
-  const [creditType, setCreditType] = useState(null);
-  const [step, setStep] = useState(1);
+  const step = useSelector(getFormStep);
+
   const isStepTwoShown = step > 1;
   // const isStepThreeShown = step > 2;
-  const handlePurposeChange = useCallback((type) => {
-    setCreditType(type);
-    setStep(2);
-  }, []);
+
   return (
     <section className="credit-form" id="calculator">
       <div className="credit-form__wrapper">
@@ -21,8 +20,6 @@ function CreditForm() {
           <h3 className="step__title">Шаг 1. Цель кредита</h3>
           <CreditPurpose
             className="step__form"
-            checkedCredit={creditType}
-            onClick={handlePurposeChange}
           />
         </div>
         {isStepTwoShown && (
@@ -30,7 +27,6 @@ function CreditForm() {
             <h3 className="step__title">Шаг 2. Введите параметры кредита</h3>
             <CreditParameters
               className="step__form"
-              credit={creditType}
             />
           </div>
         )}

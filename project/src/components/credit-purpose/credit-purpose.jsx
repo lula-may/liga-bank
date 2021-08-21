@@ -1,10 +1,14 @@
 import React, {useCallback, useMemo, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import PropTypes from 'prop-types';
 
 import './style.scss';
 
 import {getClassName} from '../../utils';
 import { CreditType } from '../../const';
+import {setCreditType, setStep} from '../../store/actions';
+import {getCreditType} from '../../store/selectors';
 
 const CreditToTitle = {
   home: 'Ипотечное кредитование',
@@ -13,16 +17,21 @@ const CreditToTitle = {
 
 const types = Object.values(CreditType);
 
-function CreditPurpose({className, onClick, checkedCredit}) {
+function CreditPurpose({className}) {
+  const checkedCredit = useSelector(getCreditType);
   const [isOpen, setOpenStatus] = useState(false);
+  const dispatch = useDispatch();
 
-  const selectText = useMemo(() => checkedCredit ? CreditToTitle[checkedCredit] : 'Выберите цель кредита', [checkedCredit]);
   const handleOptionClick = useCallback((evt) => {
     setOpenStatus(false);
-    onClick(evt.target.id);
-  }, [onClick]);
+    dispatch(setCreditType(evt.target.id));
+    dispatch(setStep(2));
+  }, [dispatch]);
 
   const handleSelectClick = useCallback(() => setOpenStatus((prev) => !prev), []);
+
+  const selectText = useMemo(() => checkedCredit ? CreditToTitle[checkedCredit] : 'Выберите цель кредита', [checkedCredit]);
+
 
   const formClass = useMemo(() => getClassName(className, 'purpose'), [className]);
 
@@ -56,8 +65,6 @@ function CreditPurpose({className, onClick, checkedCredit}) {
 
 CreditPurpose.propTypes = {
   className: PropTypes.string.isRequired,
-  checkedCredit: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
 };
 
 export default CreditPurpose;

@@ -13,8 +13,9 @@ function CreditPriceField(props) {
   const [isValid, setIsValid] = useState(true);
   const infoText = useMemo(() => `От ${min.toLocaleString('ru-RU')} до ${max.toLocaleString('ru-RU')}`, [max, min]);
 
-  const incrementPrice = useCallback((prev) => (prev + step > max) ? max : prev + step, [max, step]);
-  const decrementPrice = useCallback((prev) => (prev - step < min) ? min : prev + step, [min, step]);
+  const incrementPrice = useCallback(() => (currentPrice + step > max) ? max : currentPrice + step, [currentPrice, max, step]);
+
+  const decrementPrice = useCallback(() => (currentPrice - step < min) ? min : currentPrice - step, [currentPrice, min, step]);
 
   const handlePriceChange = useCallback((evt) => {
     const newValue = clearNumber(evt.target.value);
@@ -29,12 +30,12 @@ function CreditPriceField(props) {
 
   const handleMinusClick = useCallback((evt) => {
     evt.preventDefault();
-    onChange(decrementPrice);
+    onChange(decrementPrice());
   }, [decrementPrice, onChange]);
 
   const handlePlusClick = useCallback((evt) => {
     evt.preventDefault();
-    onChange(incrementPrice);
+    onChange(incrementPrice());
   }, [incrementPrice, onChange]);
 
   return (

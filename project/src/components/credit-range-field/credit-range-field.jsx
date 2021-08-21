@@ -60,7 +60,6 @@ function CreditRangeField(props) {
           defaultValue={currentValue.toLocaleString('ru-RU')}
         />
         <span className="price-field__units">{fieldUnit}</span>
-        <span className="price-field__error">некорректное значение</span>
       </div>
       {children}
     </div>
