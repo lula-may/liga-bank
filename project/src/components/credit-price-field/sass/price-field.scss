@@ -45,12 +45,18 @@
   background-color: transparent;
   width: 16px;
   height: 16px;
+  cursor: pointer;
 
   &--minus {
     margin-right: auto;
   }
   &--plus {
     margin-left: auto;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
   }
 }
 
