@@ -18,6 +18,7 @@ function CreditRangeField(props) {
   const {
     children,
     currentValue,
+    isDisabled,
     fieldName,
     fieldUnit,
     label,
@@ -58,6 +59,7 @@ function CreditRangeField(props) {
           type="text"
           name={fieldName}
           defaultValue={currentValue.toLocaleString('ru-RU')}
+          disabled={isDisabled}
         />
         <span className="price-field__units">{fieldUnit}</span>
       </div>
@@ -71,6 +73,7 @@ CreditRangeField.propTypes = {
   currentValue: PropTypes.number.isRequired,
   fieldName: PropTypes.string.isRequired,
   fieldUnit: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool,
   label: PropTypes.string.isRequired,
   max: PropTypes.number.isRequired,
   min: PropTypes.number.isRequired,

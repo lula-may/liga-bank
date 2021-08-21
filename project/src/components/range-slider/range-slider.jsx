@@ -10,6 +10,7 @@ function RangeSlider(props) {
     className,
     formatLabel,
     initialValue,
+    isDisabled,
     minValue,
     maxValue,
     name,
@@ -30,6 +31,7 @@ function RangeSlider(props) {
     return (
       <div className={className}>
         <InputRange
+          disabled={isDisabled}
           formatLabel={formatLabel}
           minValue={minValue}
           maxValue={maxValue}
@@ -48,6 +50,7 @@ RangeSlider.propTypes = {
   className: PropTypes.string,
   formatLabel: PropTypes.func,
   initialValue: PropTypes.number.isRequired,
+  isDisabled:PropTypes.bool,
   maxValue: PropTypes.number.isRequired,
   minValue: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,

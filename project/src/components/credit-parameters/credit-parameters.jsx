@@ -7,7 +7,7 @@ import CreditRangeField from '../credit-range-field/credit-range-field';
 import RangeSlider from '../range-slider/range-slider';
 import { getPluralNumeral } from '../../utils';
 import {Credit} from '../../data/credit';
-import {getTotalSum, getInitialPayment, getPaymentRate, getPeriod, getCreditType} from '../../store/selectors';
+import {getTotalSum, getInitialPayment, getPaymentRate, getPeriod, getCreditType, getValidityStatus} from '../../store/selectors';
 import { setInitialPayment, setInitialPaymentRate, setPeriod} from '../../store/actions';
 
 const getPeriodLabel = (value) => getPluralNumeral(value, 'год', 'года', 'лет');
@@ -15,6 +15,7 @@ const getPeriodLabel = (value) => getPluralNumeral(value, 'год', 'года', 
 function CreditParameters({className}) {
   const type = useSelector(getCreditType);
   const totalPrice = useSelector(getTotalSum);
+  const isValid = useSelector(getValidityStatus);
   const payment = useSelector(getInitialPayment);
   const paymentRate = useSelector(getPaymentRate);
   const term = useSelector(getPeriod);
@@ -49,6 +50,7 @@ function CreditParameters({className}) {
         currentValue={payment}
         fieldName="initial-payment"
         fieldUnit="рублей"
+        isDisabled={!isValid}
         label={paymentLabel}
         max={getMaxPayment()}
         min={getMinPayment()}
@@ -58,6 +60,7 @@ function CreditParameters({className}) {
           className="range range--initial-payment"
           formatLabel={(value) => `${Math.round(value)}%`}
           initialValue={paymentRate}
+          isDisabled={!isValid}
           minValue={minRate}
           maxValue={maxRate}
           name="initial-payment"
@@ -69,6 +72,7 @@ function CreditParameters({className}) {
         currentValue={term}
         fieldName="period"
         fieldUnit={getPeriodLabel(term)}
+        isDisabled={!isValid}
         label={periodLabel}
         max={maxPeriod}
         min={minPeriod}
@@ -78,6 +82,7 @@ function CreditParameters({className}) {
           className="range range--period"
           formatLabel={(value) => `${value} ${getPeriodLabel(value)}`}
           initialValue={term}
+          isDisabled={!isValid}
           minValue={minPeriod}
           maxValue={maxPeriod}
           name="period"
