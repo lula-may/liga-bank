@@ -37,4 +37,8 @@ const getPluralNumeral = (count, formOne, formTwo, formMany) => {
   return formMany;
 };
 
-export {clearNumber, defineViewportWidth, getClassName, getPluralNumeral, isValidValue};
+const getPaymentByRate = (total, rate) => Math.round(total * rate / 100);
+
+const getRateByPayment = (total, payment) => payment * 100 / total;
+
+export {clearNumber, defineViewportWidth, getClassName, getPaymentByRate, getRateByPayment, getPluralNumeral, isValidValue};
