@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Credit } from '../data/credit';
 import {setStep, setCreditType, setInitialPayment, setPeriod, setTotalPrice, setInitialPaymentRate, setValidStatus, ActionType} from './actions';
-import {getPaymentByRate} from '../utils';
+import {getPaymentByRate, getRateByPayment} from '../utils';
 
 const initialState = {
   creditType: undefined,
@@ -44,6 +44,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(ActionType.UPDATE_INITIAL_PAYMENT, (state) => {
       state.initialPayment = getPaymentByRate(state.totalPrice, state.initialPaymentRate);
+    })
+    .addCase(ActionType.UPDATE_INITIAL_PAYMENT_RATE, (state) => {
+      state.initialPaymentRate = getRateByPayment(state.totalPrice, state.initialPayment);
     });
 });
 
