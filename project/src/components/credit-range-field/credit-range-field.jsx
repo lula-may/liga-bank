@@ -1,4 +1,6 @@
-import React, {useCallback, useEffect, useRef} from 'react';
+import React, { useCallback } from 'react';
+import NumberFormat from 'react-number-format';
+
 import PropTypes from 'prop-types';
 
 import {clearNumber} from '../../utils';
@@ -26,40 +28,28 @@ function CreditRangeField(props) {
     min,
     onChange,
   } = props;
-  const inputRef = useRef();
 
-  const handleInputChange = useCallback((evt) => {
-    const inputValue = clearNumber(evt.target.value);
-    const newValue = constrainValue(inputValue, min, max);
-    if (currentValue !== newValue) {
-      onChange(newValue);
+  const onInputBlur = useCallback(({target}) => {
+    const value = constrainValue(clearNumber(target.value), min, max);
+    if (currentValue === value) {
+      target.value = currentValue.toLocaleString('ru-RU');
+    } else {
+      onChange(value);
     }
   }, [currentValue, max, min, onChange]);
-
-  useEffect(() => {
-    if (inputRef.current) {
-      const inputElement = inputRef.current;
-      inputElement.value = currentValue.toLocaleString('ru-RU');
-      inputElement.addEventListener('input', (evt) => {
-        inputElement.value = clearNumber(evt.target.value);
-      });
-      inputElement.addEventListener('change', handleInputChange);
-      inputElement.addEventListener('focus', () => inputElement.value = currentValue);
-      inputElement.addEventListener('blur', () => inputElement.value = currentValue.toLocaleString('ru-RU'));
-    }
-  }, [currentValue, handleInputChange]);
 
   return (
     <div className="price-field">
       <label className="price-field__label" htmlFor={fieldName}>{label}</label>
       <div className="price-field__wrapper">
-        <input
-          ref={inputRef}
+        <NumberFormat
           id={fieldName}
           type="text"
           name={fieldName}
-          defaultValue={currentValue.toLocaleString('ru-RU')}
+          value={currentValue}
           disabled={isDisabled}
+          onBlur={onInputBlur}
+          thousandSeparator=" "
         />
         <span className="price-field__units">{fieldUnit}</span>
       </div>

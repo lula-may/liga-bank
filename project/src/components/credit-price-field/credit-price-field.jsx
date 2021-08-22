@@ -1,5 +1,6 @@
 import React, {useCallback, useMemo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
 import './style.scss';
 
@@ -66,12 +67,13 @@ function CreditPriceField(props) {
             <use xlinkHref="#minus"/>
           </svg>
         </button>
-        <input
+        <NumberFormat
           id="price"
           type="text"
           name="price"
           onChange={handlePriceChange}
-          value={currentPrice.toLocaleString('ru-RU')}
+          value={currentPrice}
+          thousandSeparator=" "
         />
         <span className="price-field__units">рублей</span>
         <span className="price-field__error">некорректное значение</span>
