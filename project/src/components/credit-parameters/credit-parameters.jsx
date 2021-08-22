@@ -8,7 +8,7 @@ import RangeSlider from '../range-slider/range-slider';
 import { getPluralNumeral } from '../../utils';
 import {Credit} from '../../data/credit';
 import {getTotalSum, getInitialPayment, getPaymentRate, getPeriod, getCreditType, getValidityStatus} from '../../store/selectors';
-import { setInitialPayment, setInitialPaymentRate, setPeriod} from '../../store/actions';
+import { setInitialPayment, setInitialPaymentRate, setPeriod, updateInitialPaymentRate} from '../../store/actions';
 
 const getPeriodLabel = (value) => getPluralNumeral(value, 'год', 'года', 'лет');
 
@@ -20,20 +20,18 @@ function CreditParameters({className}) {
   const paymentRate = useSelector(getPaymentRate);
   const term = useSelector(getPeriod);
 
-  const creditParameters = Credit[type];
-  const {totalSum, initialPayment, period} = creditParameters;
-  // const {min: minPrice} = totalSum;
+  const parameters = Credit[type];
+  const {totalSum, initialPayment, period} = parameters;
   const {min: minRate, max: maxRate, label: paymentLabel} = initialPayment;
   const {min: minPeriod, max: maxPeriod, label: periodLabel} = period;
 
   const dispatch = useDispatch();
-  const getMinPayment = useCallback(() => Math.round(totalPrice * minRate / 100), [minRate, totalPrice]);
-  const getMaxPayment = useCallback(() => Math.round(totalPrice * maxRate / 100), [maxRate, totalPrice]);
+  const minPayment = totalPrice * minRate / 100;
 
   const onPaymentChange = useCallback((value) => {
     dispatch(setInitialPayment(value));
-    dispatch(setInitialPaymentRate(value * 100 / totalPrice));
-  }, [dispatch, totalPrice]);
+    dispatch(updateInitialPaymentRate());
+  }, [dispatch]);
 
   const onRateChange = useCallback((value) => {
     dispatch(setInitialPaymentRate(value));
@@ -52,8 +50,8 @@ function CreditParameters({className}) {
         fieldUnit="рублей"
         isDisabled={!isValid}
         label={paymentLabel}
-        max={getMaxPayment()}
-        min={getMinPayment()}
+        max={totalPrice}
+        min={minPayment}
         onChange={onPaymentChange}
       >
         <RangeSlider
