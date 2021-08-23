@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Credit } from '../data/credit';
-import {setStep, setCreditType, setInitialPayment, setPeriod, setTotalPrice, setInitialPaymentRate, setValidStatus, ActionType, setCasco, setLifeInsurance, setMatCapital} from './actions';
+import {setStep, setCreditType, setInitialPayment, setPeriod, setTotalPrice, setInitialPaymentRate, setValidStatus, ActionType, setCasco, setLifeInsurance, setMatCapital, resetOptions} from './actions';
 import {getPaymentByRate, getRateByPayment} from '../utils';
 
 const initialState = {
@@ -18,6 +18,11 @@ const initialState = {
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(resetOptions, (state) => {
+      state.isCasco = false;
+      state.isLifeInsurance = false;
+      state.isMatCapital = false;
+    })
     .addCase(setStep, (state, action) => {
       state.formStep = action.payload;
     })

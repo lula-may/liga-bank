@@ -7,7 +7,7 @@ import './style.scss';
 
 import {getClassName} from '../../utils';
 import { CreditType } from '../../const';
-import {setCreditType, setStep} from '../../store/actions';
+import {resetOptions, setCreditType, setStep} from '../../store/actions';
 import {getCreditType} from '../../store/selectors';
 
 const CreditToTitle = {
@@ -25,6 +25,7 @@ function CreditPurpose({className}) {
   const handleOptionClick = useCallback((evt) => {
     setOpenStatus(false);
     dispatch(setCreditType(evt.target.id));
+    dispatch(resetOptions());
     dispatch(setStep(2));
   }, [dispatch]);
 

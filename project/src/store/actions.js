@@ -1,6 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
 
 export const ActionType = {
+  RESET_OPTIONS: 'CREDIT/RESET_OPTIONS',
   SET_CASCO: 'CREDIT/SET_CASCO',
   SET_CREDIT_TYPE: 'CREDIT/SET_CREDIT_TYPE',
   SET_FORM_STEP: 'FORM/SET_STEP',
@@ -18,6 +19,8 @@ export const ActionType = {
 export const setStep = createAction(ActionType.SET_FORM_STEP, (step) => ({
   payload: step,
 }));
+
+export const resetOptions = createAction(ActionType.RESET_OPTIONS);
 
 export const setCreditType = createAction(ActionType.SET_CREDIT_TYPE, (type) => ({
   payload: type,
