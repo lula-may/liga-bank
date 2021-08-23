@@ -1,3 +1,4 @@
+import { OptionType } from '../const';
 const Credit = {
   home: {
     minLoanSum: 500000,
@@ -22,9 +23,9 @@ const Credit = {
       step: 1,
       unit: 'лет',
     },
-    chekboxes: [
+    options: [
       {
-        name: 'motherCapital',
+        title: OptionType.MAT_CAPITAL,
         label: 'Использовать материнский капитал',
       },
     ],
@@ -52,13 +53,13 @@ const Credit = {
       step: 1,
       unit: 'лет',
     },
-    chekboxes: [
+    options: [
       {
-        name: 'casco',
+        title: OptionType.CASCO,
         label: 'Оформить КАСКО в нашем банке',
       },
       {
-        name: 'life-insurance',
+        title: OptionType.LIFE_INSURANCE,
         label: 'Оформить Страхование жизни в нашем банке',
       },
     ],

@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 function Option({label, title, onChange, isChecked}) {
-  const handleInputChange = useCallback((evt) => onChange(evt.target.id), [onChange]);
+  const handleInputChange = useCallback(({target}) => onChange({
+    title: target.id,
+    isChecked: target.checked,
+  }), [onChange]);
 
   return (
     <div className="option">

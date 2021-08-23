@@ -78,4 +78,10 @@ const Breakpoint = {
   TABLET: 768,
 };
 
-export {AppRoute, Breakpoint, CreditType, HEADER_LINKS, FOOTER_LINKS, Navigation, TabType, TabTypeToData, Viewport};
+const OptionType = {
+  CASCO: 'casco',
+  LIFE_INSURANCE: 'life-insurance',
+  MAT_CAPITAL: 'mat-capital',
+};
+
+export {AppRoute, Breakpoint, CreditType, HEADER_LINKS, FOOTER_LINKS, Navigation, OptionType, TabType, TabTypeToData, Viewport};
