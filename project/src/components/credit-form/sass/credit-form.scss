@@ -16,6 +16,21 @@
   line-height: 1.4;
 }
 
+.credit-form__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.credit-form__parameters {
+  width: 51.3%;
+}
+
+.credit-form__offer {
+  width: 42.7%;
+  min-width: 430px;
+  margin-top: 30px;
+}
+
 .credit-form__step {
   margin-bottom: 32px;
 }
@@ -29,11 +44,25 @@
   .credit-form__step {
     margin-bottom: 34px;
   }
+
+  .credit-form__container {
+    display: block;
+    width: 100%;
+  }
+
+  .credit-form__parameters,
+  .credit-form__offer {
+    width: 100%;
+  }
 }
 
 @media (max-width: $mobile-width) {
   .credit-form__title {
     margin-bottom: 28px;
     font-size: $font-size-subheading;
+  }
+
+  .credit-form__offer {
+    min-width: auto;
   }
 }

@@ -67,66 +67,61 @@ function CreditParameters({className}) {
 
   return (
     <form method="post" id="form-parameters" className={className}>
-      <div className="parameters">
-        <div className="parameters__form">
-          <CreditPriceField
-            priceParams={totalSum}
-          />
-          <CreditRangeField
-            currentValue={payment}
-            fieldName="initial-payment"
-            fieldUnit="рублей"
-            isDisabled={!isValid}
-            label={paymentLabel}
-            max={totalPrice}
-            min={minPayment}
-            onChange={onPaymentChange}
-          >
-            <RangeSlider
-              className="range range--initial-payment"
-              formatLabel={(value) => `${Math.round(value)}%`}
-              initialValue={paymentRate}
-              isDisabled={!isValid}
-              minValue={minRate}
-              maxValue={maxRate}
-              name="initial-payment"
-              onRangeChange={onRateChange}
-              step={5}
-            />
-          </CreditRangeField>
-          <CreditRangeField
-            currentValue={term}
-            fieldName="period"
-            fieldUnit={getPeriodLabel(term)}
-            isDisabled={!isValid}
-            label={periodLabel}
-            max={maxPeriod}
-            min={minPeriod}
-            onChange={onPeriodChange}
-          >
-            <RangeSlider
-              className="range range--period"
-              formatLabel={(value) => `${value} ${getPeriodLabel(value)}`}
-              initialValue={term}
-              isDisabled={!isValid}
-              minValue={minPeriod}
-              maxValue={maxPeriod}
-              name="period"
-              onRangeChange={onPeriodChange}
-            />
-          </CreditRangeField>
-          {options.map(({title, label}) => (
-            <Option
-              key={title}
-              title={title}
-              label={label}
-              isChecked={OptionStatus[title]}
-              onChange={onOptionChange}
-            />
-          ))}
-        </div>
-        <div className="parameters__offer"></div>
-      </div>
+      <CreditPriceField
+        priceParams={totalSum}
+      />
+      <CreditRangeField
+        currentValue={payment}
+        fieldName="initial-payment"
+        fieldUnit="рублей"
+        isDisabled={!isValid}
+        label={paymentLabel}
+        max={totalPrice}
+        min={minPayment}
+        onChange={onPaymentChange}
+      >
+        <RangeSlider
+          className="range range--initial-payment"
+          formatLabel={(value) => `${Math.round(value)}%`}
+          initialValue={paymentRate}
+          isDisabled={!isValid}
+          minValue={minRate}
+          maxValue={maxRate}
+          name="initial-payment"
+          onRangeChange={onRateChange}
+          step={5}
+        />
+      </CreditRangeField>
+      <CreditRangeField
+        currentValue={term}
+        fieldName="period"
+        fieldUnit={getPeriodLabel(term)}
+        isDisabled={!isValid}
+        label={periodLabel}
+        max={maxPeriod}
+        min={minPeriod}
+        onChange={onPeriodChange}
+      >
+        <RangeSlider
+          className="range range--period"
+          formatLabel={(value) => `${value} ${getPeriodLabel(value)}`}
+          initialValue={term}
+          isDisabled={!isValid}
+          minValue={minPeriod}
+          maxValue={maxPeriod}
+          name="period"
+          onRangeChange={onPeriodChange}
+        />
+      </CreditRangeField>
+      {options.map(({title, label}) => (
+        <Option
+          key={title}
+          title={title}
+          label={label}
+          isChecked={OptionStatus[title]}
+          onChange={onOptionChange}
+        />
+      ))}
     </form>
   );
 }
