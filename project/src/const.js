@@ -84,4 +84,23 @@ const OptionType = {
   MAT_CAPITAL: 'mat-capital',
 };
 
-export {AppRoute, Breakpoint, CreditType, HEADER_LINKS, FOOTER_LINKS, Navigation, OptionType, TabType, TabTypeToData, Viewport};
+const Percentage = {
+  AUTO_DEFAULT: 16,
+  AUTO_DISCOUNT: 15,
+  AUTO_WITH_OPTION: 8.5,
+  AUTO_MIN: 3.5,
+  HOME_DEFAULT: 9.4,
+  HOME_DISCOUNT: 8.5,
+};
+
+const MinLoanSum = {
+  auto: 200000,
+  home: 500000,
+};
+
+const AUTO_TOTAL_PRICE_FOR_DISCOUNT = 2000000;
+const HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT = 15;
+const MAT_CAPITAL = 470000;
+const INCOME_RATE = 0.45;
+
+export {AppRoute, AUTO_TOTAL_PRICE_FOR_DISCOUNT, Breakpoint, CreditType, FOOTER_LINKS, HEADER_LINKS, HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT, INCOME_RATE, MAT_CAPITAL, MinLoanSum, Navigation, OptionType, Percentage, TabType, TabTypeToData, Viewport};

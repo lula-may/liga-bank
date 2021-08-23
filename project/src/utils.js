@@ -41,4 +41,10 @@ const getPaymentByRate = (total, rate) => Math.round(total * rate / 100);
 
 const getRateByPayment = (total, payment) => payment * 100 / total;
 
-export {clearNumber, defineViewportWidth, getClassName, getPaymentByRate, getRateByPayment, getPluralNumeral, isValidValue};
+const getAnnuityPayment = (total, yearRate, period) => {
+  const monthRate = yearRate / (12 * 100);
+  const monthCount = period * 12;
+  return Math.round(total * monthRate / (1 - Math.pow(1 + monthRate, -monthCount)));
+};
+
+export {clearNumber, defineViewportWidth, getAnnuityPayment, getClassName, getPaymentByRate, getRateByPayment, getPluralNumeral, isValidValue};
