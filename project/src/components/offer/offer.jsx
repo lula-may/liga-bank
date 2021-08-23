@@ -1,28 +1,38 @@
 import React from 'react';
-// import {useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
+import { CreditType } from '../../const';
+import { getCreditType, selectLoanSum, selectMinIncome, selectMonthlyPayment, selectPercentRate } from '../../store/selectors';
 // import PropTypes from 'prop-types';
 import './style.scss';
 
-function Offer(props) {
+function Offer() {
+  const creditType = useSelector(getCreditType);
+  const loanSum = useSelector(selectLoanSum).toLocaleString('ru-RU');
+  const percentRate = useSelector(selectPercentRate).toFixed(2).replace('.', ',');
+  const monthlyPayment = useSelector(selectMonthlyPayment).toLocaleString('ru-RU');
+  const monthlyIncome = useSelector(selectMinIncome).toLocaleString('ru-RU');
+
+  const creditText = (creditType === CreditType.AUTO) ? 'автокредита' : 'ипотеки';
+
   return (
     <section className="offer">
       <div className="offer__container">
         <h3>Наше предложение</h3>
         <dl className="offer__details">
           <div className="offer__item">
-            <dt>1 330 000 рублей</dt>
-            <dd>Сумма ипотеки</dd>
+            <dt>{loanSum} рублей</dt>
+            <dd>Сумма {creditText}</dd>
           </div>
           <div className="offer__item">
-            <dt>9,40%</dt>
+            <dt>{percentRate}%</dt>
             <dd>Процентная ставка</dd>
           </div>
           <div className="offer__item">
-            <dt>27 868 рублей</dt>
+            <dt>{monthlyPayment} рублей</dt>
             <dd>Ежемесячный платеж</dd>
           </div>
           <div className="offer__item">
-            <dt>61 929 рублей</dt>
+            <dt>{monthlyIncome} рублей</dt>
             <dd>Необходимый доход</dd>
           </div>
         </dl>
