@@ -1,0 +1,36 @@
+.option {
+  padding-top: 20px;
+  font-size: $font-size-label;
+  line-height: 1.4;
+  color: $text-clr-basic;
+}
+
+.option__label {
+  display: flex;
+}
+
+.option__box {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  margin-top: 2px;
+  flex-shrink: 0;
+
+  border: 1px solid $bg-dark;
+  background-color: transparent;
+  border-radius: 2px;
+}
+
+input:checked + .option__label .option__box {
+  background-color: $bg-dark;
+  background-image: url('../img/tick.svg');
+  background-repeat: no-repeat;
+  background-size: 8px 6px;
+  background-position: center;
+}
+
+@media (max-width: $mobile-width) {
+  .option {
+    font-size: $font-size-tablet;
+  }
+}
