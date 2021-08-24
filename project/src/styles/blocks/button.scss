@@ -5,14 +5,18 @@
   text-decoration: none;
 
   border-radius: 4px;
+  cursor: pointer;
 
-  &:hover,
-  &:focus {
+  &:hover:not(:disabled) {
   box-shadow: 0 10px 8px -8px $text-clr-input;
   transform: translateY(-4px);
   }
 
   &:active {
     opacity: 0.5;
+  }
+
+  &:disabled {
+    cursor: default;
   }
 }
