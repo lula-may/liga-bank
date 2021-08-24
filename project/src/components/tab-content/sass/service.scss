@@ -19,11 +19,7 @@
   }
 
   .service__button {
-    padding: 16px 30px 16px;
-
-    font-size: $font-size-label;
-    color: $bg-light;
-    background-color: $bg-dark;
+    @include dark-button();
   }
 
   a {
