@@ -8,11 +8,20 @@
   h3 {
     margin: 0;
     margin-bottom: 25px;
+    width: 382px;
     padding: 0;
 
     font-size: $font-size-subheading;
     font-weight: 500;
     line-height: 1.4;
+  }
+
+  p {
+    max-width: 300px;
+
+    font-size: $font-size-label;
+    line-height: 1.4;
+    color: $text-clr-label;
   }
 
   .offer__button {
@@ -29,13 +38,14 @@
 }
 
 .offer__container {
-  width: 382px;
+  width: max-content;
+  max-width: 90%;
   margin: 0 auto;
 }
 
 .offer__details {
   display: grid;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: 227px auto;
   row-gap: 25px;
 
   margin: 0;
