@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useSelector} from 'react-redux';
 import NumberFormat from 'react-number-format';
 
@@ -23,6 +23,20 @@ function RequestForm() {
   const totalPrice = useSelector(getTotalSum);
   const initialPayment = useSelector(getInitialPayment);
   const period = useSelector(getPeriod);
+  const formRef = useRef();
+  const [formElement, setFormElement] = useState(null);
+
+  const phoneValue = localStorage && localStorage.getItem('phone');
+
+  const handleFormSubmit = useCallback((evt) => {
+    evt.preventDefault();
+    const name = formElement.querySelector('#request-user').value;
+    const phone = formElement.querySelector('#request-phone').value;
+    const email = formElement.querySelector('#request-email').value;
+    localStorage.setItem('name', name);
+    localStorage.setItem('phone', phone);
+    localStorage.setItem('email', email);
+  }, [formElement]);
 
   const fields = [
     {
@@ -52,10 +66,24 @@ function RequestForm() {
     },
   ];
 
+  useEffect(() => {
+    if (formRef.current && formElement === null) {
+      const element = formRef.current;
+      const inputName = element.querySelector('#request-user');
+      const inputEmail = element.querySelector('#request-email');
+      inputName.focus();
+      if (localStorage) {
+        inputName.value = localStorage.getItem('name');
+        inputEmail.value = localStorage.getItem('email');
+      }
+      setFormElement(element);
+    }
+  }, [formElement]);
+
   return (
     <section className="request-form">
       <h3>Шаг 3. Оформление заявки</h3>
-      <form action="#" method="post" id="request-form">
+      <form ref={formRef} action="#" method="post" id="request-form" onSubmit={handleFormSubmit}>
         {fields.map(({id, text, value}) => (
           <div key={id} className="request-form__item">
             <label htmlFor={`request-${id}`}>{text}</label>
@@ -77,6 +105,7 @@ function RequestForm() {
               type="tel"
               pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
               placeholder="Телефон"
+              value={phoneValue}
               required
             />
           </div>
