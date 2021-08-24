@@ -21,14 +21,14 @@ function CreditForm() {
         <div className="credit-form__container">
           <div className="credit-form__parameters">
             <div className="credit-form__step step">
-              <h3 className="step__title">Шаг 1. Цель кредита</h3>
+              <h3>Шаг 1. Цель кредита</h3>
               <CreditPurpose
                 className="step__form"
               />
             </div>
             {isStepTwoShown && (
               <div className="credit-form__step step">
-                <h3 className="step__title">Шаг 2. Введите параметры кредита</h3>
+                <h3>Шаг 2. Введите параметры кредита</h3>
                 <CreditParameters
                   className="step__form"
                 />
@@ -40,7 +40,7 @@ function CreditForm() {
           </div>
         </div>
         {isStepThreeShown &&
-        <div className="credit-form__request">
+        <div className="credit-form__step">
           <RequestForm />
         </div>}
       </div>
