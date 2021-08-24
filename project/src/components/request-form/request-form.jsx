@@ -4,7 +4,7 @@ import NumberFormat from 'react-number-format';
 
 import { CreditType } from '../../const';
 import { getCreditType, getInitialPayment, getPeriod, getRequestNumber, getTotalSum } from '../../store/selectors';
-import { formatMoneyString, formatRequestNumber, getPeriodLabel } from '../../utils';
+import { formatMoneyString, formatRequestNumber, getPeriodLabel, getClassName } from '../../utils';
 import './style.scss';
 
 const typeToTitle = {
@@ -23,10 +23,12 @@ function RequestForm() {
   const totalPrice = useSelector(getTotalSum);
   const initialPayment = useSelector(getInitialPayment);
   const period = useSelector(getPeriod);
-  const formRef = useRef();
-  const [formElement, setFormElement] = useState(null);
 
-  const phoneValue = localStorage && localStorage.getItem('phone');
+  const formRef = useRef();
+
+  const [formElement, setFormElement] = useState(null);
+  const [isInvalid, setIsInvalid] = useState(false);
+  const [currentPhone, setPhone] = useState('');
 
   const handleFormSubmit = useCallback((evt) => {
     evt.preventDefault();
@@ -37,6 +39,11 @@ function RequestForm() {
     localStorage.setItem('phone', phone);
     localStorage.setItem('email', email);
   }, [formElement]);
+
+  const handleFormInvalid = useCallback(() => {
+    setIsInvalid(true);
+    window.setTimeout(() => setIsInvalid(false), 1000);
+  }, []);
 
   const fields = [
     {
@@ -75,15 +82,23 @@ function RequestForm() {
       if (localStorage) {
         inputName.value = localStorage.getItem('name');
         inputEmail.value = localStorage.getItem('email');
+        setPhone(localStorage.getItem('phone'));
       }
       setFormElement(element);
     }
   }, [formElement]);
 
   return (
-    <section className="request-form">
+    <section className={getClassName('request-form', isInvalid && 'request-form--shake')}>
       <h3>Шаг 3. Оформление заявки</h3>
-      <form ref={formRef} action="#" method="post" id="request-form" onSubmit={handleFormSubmit}>
+      <form
+        ref={formRef}
+        action="#"
+        method="post"
+        id="request-form"
+        onSubmit={handleFormSubmit}
+        onInvalid={handleFormInvalid}
+      >
         {fields.map(({id, text, value}) => (
           <div key={id} className="request-form__item">
             <label htmlFor={`request-${id}`}>{text}</label>
@@ -105,7 +120,8 @@ function RequestForm() {
               type="tel"
               pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
               placeholder="Телефон"
-              value={phoneValue}
+              value={currentPhone}
+              onValueChange={({formattedValue}) => setPhone(formattedValue)}
               required
             />
           </div>
