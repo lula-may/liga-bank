@@ -21,6 +21,10 @@
   border-radius: 2px;
 }
 
+input:focus + .option__label .option__box {
+  box-shadow: 0 0 0 2px $text-clr-input;
+}
+
 input:checked + .option__label .option__box {
   background-color: $bg-dark;
   background-image: url('../img/tick.svg');
