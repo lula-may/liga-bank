@@ -8,8 +8,7 @@ import Option from '../option/option';
 import RangeSlider from '../range-slider/range-slider';
 
 import { getPluralNumeral } from '../../utils';
-import { OptionType } from '../../const';
-import {Credit} from '../../data/credit';
+import {CreditData, OptionType } from '../../const';
 import {getTotalSum, getInitialPayment, getPaymentRate, getPeriod, getCreditType, getValidityStatus, getCascoStatus, getLifeInsuranceStatus, getMatCapitalStatus} from '../../store/selectors';
 import { setCasco, setInitialPayment, setInitialPaymentRate, setLifeInsurance, setMatCapital, setPeriod, updateInitialPaymentRate} from '../../store/actions';
 
@@ -29,7 +28,7 @@ function CreditParameters({className}) {
     [OptionType.MAT_CAPITAL]: useSelector(getMatCapitalStatus),
   };
 
-  const parameters = Credit[type];
+  const parameters = CreditData[type];
   const {totalSum, initialPayment, period, options} = parameters;
   const {min: minRate, max: maxRate, label: paymentLabel} = initialPayment;
   const {min: minPeriod, max: maxPeriod, label: periodLabel} = period;

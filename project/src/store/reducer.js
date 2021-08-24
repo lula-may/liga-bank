@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { Credit } from '../data/credit';
+import { CreditData } from '../const';
 import {setStep, setCreditType, setInitialPayment, setPeriod, setTotalPrice, setInitialPaymentRate, setValidStatus, ActionType, setCasco, setLifeInsurance, setMatCapital, resetOptions} from './actions';
 import {getPaymentByRate, getRateByPayment} from '../utils';
 
@@ -27,7 +27,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.formStep = action.payload;
     })
     .addCase(setCreditType, (state, action) => {
-      const {totalSum: {min: minTotalPrice}, initialPayment, period} = Credit[action.payload];
+      const {totalSum: {min: minTotalPrice}, initialPayment, period} = CreditData[action.payload];
       state.creditType = action.payload;
       state.totalPrice = minTotalPrice;
       state.initialPayment = initialPayment.min * minTotalPrice / 100;

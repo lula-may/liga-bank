@@ -41,6 +41,75 @@ const CreditType = {
   HOME: 'home',
 };
 
+const OptionType = {
+  CASCO: 'casco',
+  LIFE_INSURANCE: 'life-insurance',
+  MAT_CAPITAL: 'mat-capital',
+};
+
+const CreditData = {
+  home: {
+    totalSum: {
+      label: 'Стоимость недвижимости',
+      min: 1200000,
+      max: 25000000,
+      step: 100000,
+    },
+    initialPayment: {
+      label: 'Первоначальный взнос',
+      min: 10,
+      max: 100,
+      step: 5,
+      unit: '%',
+    },
+    period: {
+      label: 'Срок кредитования',
+      min: 5,
+      max: 30,
+      step: 1,
+      unit: 'лет',
+    },
+    options: [
+      {
+        title: OptionType.MAT_CAPITAL,
+        label: 'Использовать материнский капитал',
+      },
+    ],
+  },
+  auto: {
+    totalSum: {
+      label: 'Стоимость автомобиля',
+      min: 500000,
+      max: 5000000,
+      step: 50000,
+    },
+    initialPayment: {
+      label: 'Первоначальный взнос',
+      min: 20,
+      max: 100,
+      step: 5,
+      unit: '%',
+    },
+    period: {
+      label: 'Срок кредитования',
+      min: 1,
+      max: 5,
+      step: 1,
+      unit: 'лет',
+    },
+    options: [
+      {
+        title: OptionType.CASCO,
+        label: 'Оформить КАСКО в нашем банке',
+      },
+      {
+        title: OptionType.LIFE_INSURANCE,
+        label: 'Оформить Страхование жизни в нашем банке',
+      },
+    ],
+  },
+};
+
 const TabType = {
   DEPOSIT: 'deposit',
   CREDIT: 'credit',
@@ -78,12 +147,6 @@ const Breakpoint = {
   TABLET: 768,
 };
 
-const OptionType = {
-  CASCO: 'casco',
-  LIFE_INSURANCE: 'life-insurance',
-  MAT_CAPITAL: 'mat-capital',
-};
-
 const Percentage = {
   AUTO_DEFAULT: 16,
   AUTO_DISCOUNT: 15,
@@ -103,4 +166,4 @@ const HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT = 15;
 const MAT_CAPITAL = 470000;
 const INCOME_RATE = 0.45;
 
-export {AppRoute, AUTO_TOTAL_PRICE_FOR_DISCOUNT, Breakpoint, CreditType, FOOTER_LINKS, HEADER_LINKS, HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT, INCOME_RATE, MAT_CAPITAL, MinLoanSum, Navigation, OptionType, Percentage, TabType, TabTypeToData, Viewport};
+export {AppRoute, AUTO_TOTAL_PRICE_FOR_DISCOUNT, Breakpoint, CreditData, CreditType, FOOTER_LINKS, HEADER_LINKS, HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT, INCOME_RATE, MAT_CAPITAL, MinLoanSum, Navigation, OptionType, Percentage, TabType, TabTypeToData, Viewport};
