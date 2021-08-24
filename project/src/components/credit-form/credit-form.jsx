@@ -6,12 +6,13 @@ import CreditPurpose from '../credit-purpose/credit-purpose';
 import CreditParameters from '../credit-parameters/credit-parameters';
 import Offer from '../offer/offer';
 import {getFormStep} from '../../store/selectors';
+import RequestForm from '../request-form/request-form';
 
 function CreditForm() {
   const step = useSelector(getFormStep);
 
   const isStepTwoShown = step > 1;
-  // const isStepThreeShown = step > 2;
+  const isStepThreeShown = step > 2;
 
   return (
     <section className="credit-form" id="calculator">
@@ -38,6 +39,10 @@ function CreditForm() {
             {isStepTwoShown && <Offer />}
           </div>
         </div>
+        {isStepThreeShown &&
+        <div className="credit-form__request">
+          <RequestForm />
+        </div>}
       </div>
     </section>
   );

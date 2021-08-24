@@ -7,12 +7,10 @@ import CreditRangeField from '../credit-range-field/credit-range-field';
 import Option from '../option/option';
 import RangeSlider from '../range-slider/range-slider';
 
-import { getPluralNumeral } from '../../utils';
+import { getPeriodLabel } from '../../utils';
 import {CreditData, OptionType } from '../../const';
 import {getTotalSum, getInitialPayment, getPaymentRate, getPeriod, getCreditType, getValidityStatus, getCascoStatus, getLifeInsuranceStatus, getMatCapitalStatus} from '../../store/selectors';
 import { setCasco, setInitialPayment, setInitialPaymentRate, setLifeInsurance, setMatCapital, setPeriod, updateInitialPaymentRate} from '../../store/actions';
-
-const getPeriodLabel = (value) => getPluralNumeral(value, 'год', 'года', 'лет');
 
 
 function CreditParameters({className}) {

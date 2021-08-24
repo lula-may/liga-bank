@@ -37,6 +37,8 @@ const getPluralNumeral = (count, formOne, formTwo, formMany) => {
   return formMany;
 };
 
+const getPeriodLabel = (value) => getPluralNumeral(value, 'год', 'года', 'лет');
+
 const getPaymentByRate = (total, rate) => Math.round(total * rate / 100);
 
 const getRateByPayment = (total, payment) => payment * 100 / total;
@@ -47,4 +49,18 @@ const getAnnuityPayment = (total, yearRate, period) => {
   return Math.round(total * monthRate / (1 - Math.pow(1 + monthRate, -monthCount)));
 };
 
-export {clearNumber, defineViewportWidth, getAnnuityPayment, getClassName, getPaymentByRate, getRateByPayment, getPluralNumeral, isValidValue};
+const formatRequestNumber = (count) => `№ ${String(count).padStart(4, '0')}`;
+const formatMoneyString = (count) => `${count.toLocaleString('ru-RU')} рублей`;
+
+export {
+  clearNumber,
+  defineViewportWidth,
+  formatMoneyString,
+  formatRequestNumber,
+  getAnnuityPayment,
+  getClassName,
+  getPaymentByRate,
+  getPeriodLabel,
+  getRateByPayment,
+  getPluralNumeral,
+  isValidValue};
