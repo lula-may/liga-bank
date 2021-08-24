@@ -22,6 +22,8 @@ export const getCascoStatus = (state) => state.isCasco;
 
 export const getLifeInsuranceStatus = (state) => state.isLifeInsurance;
 
+export const getRequestNumber = (state) => state.requestNumber;
+
 export const selectLoanSum = createSelector(
   getCreditType,
   getTotalSum,

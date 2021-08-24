@@ -1,6 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
 
 export const ActionType = {
+  INCREMENT_REQUEST: 'CREDIT/INCREMENT_REQUEST',
   RESET_OPTIONS: 'CREDIT/RESET_OPTIONS',
   SET_CASCO: 'CREDIT/SET_CASCO',
   SET_CREDIT_TYPE: 'CREDIT/SET_CREDIT_TYPE',
@@ -61,3 +62,5 @@ export const setLifeInsurance = createAction(ActionType.SET_LIFE_INSURANCE, (isA
 export const updateInitialPayment = createAction(ActionType.UPDATE_INITIAL_PAYMENT);
 
 export const updateInitialPaymentRate = createAction(ActionType.UPDATE_INITIAL_PAYMENT_RATE);
+
+export const incrementRequest = createAction(ActionType.INCREMENT_REQUEST);

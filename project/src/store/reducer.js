@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { CreditData } from '../const';
-import {setStep, setCreditType, setInitialPayment, setPeriod, setTotalPrice, setInitialPaymentRate, setValidStatus, ActionType, setCasco, setLifeInsurance, setMatCapital, resetOptions} from './actions';
+import {setStep, setCreditType, setInitialPayment, setPeriod, setTotalPrice, setInitialPaymentRate, setValidStatus, ActionType, setCasco, setLifeInsurance, setMatCapital, resetOptions, incrementRequest} from './actions';
 import {getPaymentByRate, getRateByPayment} from '../utils';
 
 const initialState = {
@@ -14,10 +14,14 @@ const initialState = {
   isValidPrice: true,
   period: undefined,
   totalPrice: undefined,
+  requestNumber: 10,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(incrementRequest, (state) => {
+      state.requestNumber = state.requestNumber++;
+    })
     .addCase(resetOptions, (state) => {
       state.isCasco = false;
       state.isLifeInsurance = false;
