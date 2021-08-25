@@ -1,28 +1,26 @@
 import { createSelector } from 'reselect';
-import { AUTO_TOTAL_PRICE_FOR_DISCOUNT, CreditType, HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT, INCOME_RATE, MAT_CAPITAL, MinLoanSum, Percentage } from '../const';
-import { getAnnuityPayment } from '../utils';
+import {NameSpace} from '../root-reducer';
 
-export const getFormStep = (state) => state.formStep;
+import { AUTO_TOTAL_PRICE_FOR_DISCOUNT, CreditType, HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT, INCOME_RATE, MAT_CAPITAL, MinLoanSum, Percentage } from '../../const';
+import { getAnnuityPayment } from '../../utils';
 
-export const getCreditType = (state) => state.creditType;
+export const getCreditType = (state) => state[NameSpace.CREDIT].creditType;
 
-export const getTotalSum = (state) => state.totalPrice;
+export const getTotalSum = (state) => state[NameSpace.CREDIT].totalPrice;
 
-export const getInitialPayment = (state) => state.initialPayment;
+export const getInitialPayment = (state) => state[NameSpace.CREDIT].initialPayment;
 
-export const getPaymentRate = (state) => state.initialPaymentRate;
+export const getPaymentRate = (state) => state[NameSpace.CREDIT].initialPaymentRate;
 
-export const getPeriod = (state) => state.period;
+export const getPeriod = (state) => state[NameSpace.CREDIT].period;
 
-export const getValidityStatus = (state) => state.isValidPrice;
+export const getValidityStatus = (state) => state[NameSpace.CREDIT].isValidPrice;
 
-export const getMatCapitalStatus = (state) => state.isMatCapital;
+export const getMatCapitalStatus = (state) => state[NameSpace.CREDIT].isMatCapital;
 
-export const getCascoStatus = (state) => state.isCasco;
+export const getCascoStatus = (state) => state[NameSpace.CREDIT].isCasco;
 
-export const getLifeInsuranceStatus = (state) => state.isLifeInsurance;
-
-export const getRequestNumber = (state) => state.requestNumber;
+export const getLifeInsuranceStatus = (state) => state[NameSpace.CREDIT].isLifeInsurance;
 
 export const selectLoanSum = createSelector(
   getCreditType,

@@ -1,11 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { CreditData } from '../const';
-import {setStep, setCreditType, setInitialPayment, setPeriod, setTotalPrice, setInitialPaymentRate, setValidStatus, ActionType, setCasco, setLifeInsurance, setMatCapital, resetOptions, incrementRequest} from './actions';
-import {getPaymentByRate, getRateByPayment} from '../utils';
+import { CreditData } from '../../const';
+import {setCreditType, setInitialPayment, setPeriod, setTotalPrice, setInitialPaymentRate, setValidStatus, ActionType, setCasco, setLifeInsurance, setMatCapital, resetOptions} from '../actions';
+import {getPaymentByRate, getRateByPayment} from '../../utils';
 
 const initialState = {
   creditType: undefined,
-  formStep: 1,
   initialPayment: undefined,
   initialPaymentRate: undefined,
   isCasco: false,
@@ -14,21 +13,14 @@ const initialState = {
   isValidPrice: true,
   period: undefined,
   totalPrice: undefined,
-  requestNumber: 10,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(incrementRequest, (state) => {
-      state.requestNumber = state.requestNumber++;
-    })
     .addCase(resetOptions, (state) => {
       state.isCasco = false;
       state.isLifeInsurance = false;
       state.isMatCapital = false;
-    })
-    .addCase(setStep, (state, action) => {
-      state.formStep = action.payload;
     })
     .addCase(setCreditType, (state, action) => {
       const {totalSum: {min: minTotalPrice}, initialPayment, period} = CreditData[action.payload];
