@@ -23,9 +23,28 @@
     line-height: 1.4;
     color: $text-clr-label;
   }
+
+  @media (max-width: $tablet-width) {
+    width: 100%;
+  }
 }
 
 .success-message__button {
   top: 20px;
   right: 20px;
+}
+
+@media (max-width: $mobile-width) {
+  .success-message {
+    padding: 34px 25px;
+
+    h3 {
+      width: 85%;
+      margin-bottom: 13px;
+      margin-left: auto;
+      margin-right: auto;
+
+      font-size: $font-size-basic;
+    }
+  }
 }

@@ -1,6 +1,6 @@
 .request-form {
   width: 770px;
-  margin: 0 auto;
+  margin: 0 auto 96px;
   padding: 63px 70px 70px;
 
   background-color: $bg-light;
@@ -93,6 +93,7 @@
     width: 100%;
     padding-left: 0;
     padding-right: 0;
+    margin-bottom: 0;
 
     text-align: center;
 
@@ -109,6 +110,10 @@
 }
 
 @media (max-width: $mobile-width) {
+  .request-form {
+    padding: 0;
+  }
+
   .request-form__item {
     flex-direction: column-reverse;
     align-items: flex-start;
