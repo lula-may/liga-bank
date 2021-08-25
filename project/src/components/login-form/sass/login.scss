@@ -1,0 +1,122 @@
+.login {
+  position: relative;
+  width: 544px;
+  padding: 60px;
+
+  background-color: $bg-light;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login__submit {
+    @include dark-button();
+    width: 100%;
+  }
+}
+
+.login__logo {
+  margin-bottom: 18px;
+}
+
+.login__close {
+  top: 56px;
+  right: 56px;
+
+  width: 24px;
+  height: 24px;
+
+  background-size: 16px 16px;
+}
+
+.login__field {
+  position: relative;
+  margin-bottom: 4px;
+
+  label {
+    display: block;
+    padding-top: 20px;
+    margin-bottom: 4px;
+
+    font-size: $font-size-label;
+    line-height: 1.4;
+    color: $text-clr-label;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    padding: 17px 24px 18px;
+
+    font: inherit;
+    font-size: $font-size-basic;
+    line-height: 1.4;
+    color: $text-clr-basic;
+
+    border: 1px solid $text-clr-basic;
+    border-radius: 4px;
+    background-color: transparent;
+  }
+
+  .login__toggle-password {
+    @include button-reset();
+    position: absolute;
+    top: 64px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+
+    background-image: url('../img/eye.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 22px 12px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+.login__link {
+  align-self: flex-end;
+  margin-bottom: 24px;
+
+  font-size: $font-size-footer;
+  line-height: 1.4;
+  color: $text-clr-footer;
+  text-decoration: none;
+}
+
+@media (max-width: $tablet-width) {
+  .login {
+    width: 100%;
+    padding-left: 88px;
+    padding-right: 88px;
+  }
+
+  .login__close {
+    right: 84px;
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .login {
+    padding: 50px 20px;
+
+    .login__submit {
+      margin-top: 26px;
+      margin-bottom: 10px;
+    }
+
+    .login__close {
+      top: 45px;
+      right: 20px;
+    }
+  }
+
+  .login__link {
+    order: 2;
+    align-self: center;
+    margin-bottom: 0;
+  }
+}
+
