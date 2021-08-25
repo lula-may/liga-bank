@@ -161,9 +161,33 @@ const MinLoanSum = {
   home: 500000,
 };
 
+const PopupType = {
+  LOGIN: 'login',
+  THANK_YOU: 'thank-you',
+};
+
 const AUTO_TOTAL_PRICE_FOR_DISCOUNT = 2000000;
 const HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT = 15;
 const MAT_CAPITAL = 470000;
 const INCOME_RATE = 0.45;
 
-export {AppRoute, AUTO_TOTAL_PRICE_FOR_DISCOUNT, Breakpoint, CreditData, CreditType, FOOTER_LINKS, HEADER_LINKS, HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT, INCOME_RATE, MAT_CAPITAL, MinLoanSum, Navigation, OptionType, Percentage, TabType, TabTypeToData, Viewport};
+export {
+  AppRoute,
+  AUTO_TOTAL_PRICE_FOR_DISCOUNT,
+  Breakpoint,
+  CreditData,
+  CreditType,
+  FOOTER_LINKS,
+  HEADER_LINKS,
+  HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT,
+  INCOME_RATE,
+  MAT_CAPITAL,
+  MinLoanSum,
+  Navigation,
+  OptionType,
+  Percentage,
+  PopupType,
+  TabType,
+  TabTypeToData,
+  Viewport
+};

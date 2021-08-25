@@ -1,18 +1,23 @@
 import React, {Fragment, useEffect, useCallback} from 'react';
 
+import CreditForm from '../credit-form/credit-form';
 import Footer from '../footer/footer';
 import Header from '../header/header';
-import Slider from '../slider/slider';
+import Popup from '../popup/popup';
 import Services from '../services/services';
-import CreditForm from '../credit-form/credit-form';
+import Slider from '../slider/slider';
+
 import {Navigation} from '../../const';
 import { defineViewportWidth } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { getViewport } from '../../store/page/selectors';
-import { setViewport } from '../../store/actions';
+import {getPopup, getViewport } from '../../store/page/selectors';
+import { setPopup, setViewport } from '../../store/actions';
 
 function Main() {
   const viewport = useSelector(getViewport);
+  const popupName = useSelector(getPopup);
+  const isPopupShown = Boolean(popupName);
+
   const dispatch = useDispatch();
 
   const changeDevice = useCallback(() => {
@@ -21,6 +26,8 @@ function Main() {
       dispatch(setViewport(newViewport));
     }
   }, [dispatch, viewport]);
+
+  const closePopup = useCallback(() => dispatch(setPopup(null)), [dispatch]);
 
   useEffect(() => {
     window.addEventListener('resize', changeDevice);
@@ -38,6 +45,7 @@ function Main() {
       <Services/>
       <CreditForm />
       <Footer/>
+      {isPopupShown && <Popup id={popupName} onClose={closePopup}/>}
     </Fragment>
   );
 }

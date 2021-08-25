@@ -1,12 +1,13 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import NumberFormat from 'react-number-format';
 import './style.scss';
 
-import { CreditType } from '../../const';
+import { CreditType, PopupType } from '../../const';
 import { getCreditType, getInitialPayment, getPeriod, getTotalSum } from '../../store/credit/selectors';
 import { getRequestNumber } from '../../store/page/selectors';
 import { formatMoneyString, formatRequestNumber, getPeriodLabel, getClassName } from '../../utils';
+import { incrementRequest, setPopup} from '../../store/actions';
 
 const typeToTitle = {
   [CreditType.AUTO]: 'Автокредит',
@@ -31,6 +32,8 @@ function RequestForm() {
   const [isInvalid, setIsInvalid] = useState(false);
   const [currentPhone, setPhone] = useState('');
 
+  const dispatch = useDispatch();
+
   const handleFormSubmit = useCallback((evt) => {
     evt.preventDefault();
     const name = formElement.querySelector('#request-user').value;
@@ -39,7 +42,9 @@ function RequestForm() {
     localStorage.setItem('name', name);
     localStorage.setItem('phone', phone);
     localStorage.setItem('email', email);
-  }, [formElement]);
+    dispatch(incrementRequest());
+    dispatch(setPopup(PopupType.THANK_YOU));
+  }, [dispatch, formElement]);
 
   const handleFormInvalid = useCallback(() => {
     setIsInvalid(true);
