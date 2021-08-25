@@ -3,7 +3,7 @@
   margin: 0;
   padding-top: 26px;
   padding-bottom: 17px;
-  z-index: 1;
+  z-index: 2;
 
   font-size: $font-size-label;
 
@@ -153,6 +153,7 @@
       top: 100%;
       left: 0;
       width: 100%;
+      min-height: 630px;
       padding: 20px 5%;
       z-index: 1;
       flex-direction: column;

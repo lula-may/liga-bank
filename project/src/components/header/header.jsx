@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import Logo from '../logo/logo';
 import {getClassName} from '../../utils';
-import {AppRoute, HEADER_LINKS, Viewport} from '../../const';
+import {HEADER_LINKS, Viewport} from '../../const';
 import { getViewport } from '../../store/page/selectors';
 const ESC_KEY = 'Escape';
 
@@ -68,10 +68,10 @@ function Header({currentPage}) {
           </nav>
           <ul className="main-header__user-nav user-nav">
             <li className="user-nav__item">
-              <Link to={AppRoute.LOGIN} className="user-nav__link" aria-label="Войти в Интернет-банк">
+              <button className="user-nav__link" type="button" aria-label="Войти в Интернет-банк">
                 <svg className="user-nav__icon" width="20" height="22"><use xlinkHref="#login"></use></svg>
                 <span className="user-nav__label">Войти в Интернет-банк</span>
-              </Link>
+              </button>
             </li>
           </ul>
         </div>

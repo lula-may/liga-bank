@@ -1,9 +1,12 @@
 .user-nav__link {
+  @include button-reset();
   display: flex;
   justify-content: flex-end;
 
-  color: inherit;
+  font: inherit;
   text-decoration: none;
+
+  background-color: transparent;
 
   &:hover {
     opacity: 0.6;
@@ -24,9 +27,23 @@
   .user-nav__label {
     display: none;
   }
+
+  .user-nav__item {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .user-nav__icon {
+    padding: 0;
+    margin-right: 0;
+  }
 }
 
 @media (max-width: $mobile-width) {
+  .user-nav__item {
+    justify-content: flex-start;
+  }
+
   .user-nav__icon {
     width: 15px;
     margin-right: 0;
