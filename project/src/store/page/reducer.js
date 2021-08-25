@@ -11,7 +11,7 @@ const initialState = {
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(incrementRequest, (state) => {
-      state.requestNumber = state.requestNumber++;
+      state.requestNumber++;
     })
     .addCase(setPopup, (state, action) => {
       state.popup = action.payload;
