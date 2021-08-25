@@ -11,4 +11,8 @@
   justify-content: center;
 
   background-color: $bg-popup;
+
+  @media (max-width: $mobile-width) {
+    padding: 0 5%;
+  }
 }

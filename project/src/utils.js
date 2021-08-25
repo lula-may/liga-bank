@@ -13,6 +13,8 @@ const defineViewportWidth = () => {
 
 const getBodyScrollTop = () => window.pageYOffset || (document.documentElement && document.documentElement.ScrollTop) || (document.body && document.body.scrollTop);
 
+const isVerticalScroll = () =>  document.body.offsetHeight > window.innerHeight;
+
 const clearNumber = (str) => Number(str.replace(/\D/g, ''));
 
 const isValidValue = (value, min, max) => {
@@ -66,4 +68,6 @@ export {
   getPeriodLabel,
   getRateByPayment,
   getPluralNumeral,
-  isValidValue};
+  isValidValue,
+  isVerticalScroll
+};

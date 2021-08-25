@@ -2,9 +2,10 @@ import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
+import ThankYou from '../thank-you/thank-you';
 import { PopupType } from '../../const';
 import { useEffect } from 'react';
-import { getBodyScrollTop } from '../../utils';
+import { getBodyScrollTop, isVerticalScroll } from '../../utils';
 
 
 function Popup({id, onClose}) {
@@ -12,12 +13,17 @@ function Popup({id, onClose}) {
   const pageLeftPosition = document.body.offsetLeft;
 
   useEffect(() => {
-    document.body.style.top = `-${pageTopPosition}px`;
-    document.body.width = '100%';
-    document.body.classList.add('body-lock');
+    if (isVerticalScroll()) {
+      document.body.style.top = `-${pageTopPosition}px`;
+      document.body.classList.add('body-lock');
+    }
+
     return () => {
-      document.body.classList.remove('body-lock');
-      window.scrollTo(0, pageTopPosition);
+      if (isVerticalScroll()) {
+        document.body.classList.remove('body-lock');
+        document.body.style = void 0;
+        window.scrollTo(0, pageTopPosition);
+      }
     };
   }, [pageLeftPosition, pageTopPosition]);
 
@@ -25,11 +31,11 @@ function Popup({id, onClose}) {
     switch (type) {
       case PopupType.LOGIN:
         return (
-          <div className="clas" onClick={onClose}></div>
+          <div className="clas" onButtonClick={onClose}></div>
         );
       case PopupType.THANK_YOU:
         return (
-          <div className="pro" onClick={onClose}></div>
+          <ThankYou onButtonClick={onClose} />
         );
       default:
         return null;
