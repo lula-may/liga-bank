@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect, useCallback} from 'react';
+import React, {Fragment, useEffect, useCallback} from 'react';
 
 import Footer from '../footer/footer';
 import Header from '../header/header';
@@ -7,31 +7,37 @@ import Services from '../services/services';
 import CreditForm from '../credit-form/credit-form';
 import {Navigation} from '../../const';
 import { defineViewportWidth } from '../../utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { getViewport } from '../../store/page/selectors';
+import { setViewport } from '../../store/actions';
 
 function Main() {
-  const [viewport, setViewport] = useState(defineViewportWidth());
+  const viewport = useSelector(getViewport);
+  const dispatch = useDispatch();
+
   const changeDevice = useCallback(() => {
     const newViewport = defineViewportWidth();
     if (newViewport !== viewport) {
-      setViewport(newViewport);
+      dispatch(setViewport(newViewport));
     }
-  }, [viewport]);
+  }, [dispatch, viewport]);
 
   useEffect(() => {
-    window.removeEventListener('resize', changeDevice);
     window.addEventListener('resize', changeDevice);
-  });
+    return () => {
+      window.removeEventListener('resize', changeDevice);
+    };
+  }, [changeDevice]);
 
   return (
     <Fragment>
       <Header
         currentPage={Navigation.CREDIT}
-        viewportType={viewport}
       />
       <Slider />
-      <Services viewportType={viewport}/>
+      <Services/>
       <CreditForm />
-      <Footer viewportType={viewport} />
+      <Footer/>
     </Fragment>
   );
 }

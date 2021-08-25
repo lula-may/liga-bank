@@ -1,12 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import Logo from '../logo/logo';
 import { FOOTER_LINKS, Viewport } from '../../const';
 import './style.scss';
+import { useSelector } from 'react-redux';
+import { getViewport } from '../../store/page/selectors';
 
-function Footer({viewportType}) {
+function Footer() {
+  const viewportType = useSelector(getViewport);
+
   const isMobile = viewportType === Viewport.MOBILE;
   return (
     <footer className="page__footer main-footer">
@@ -78,9 +81,5 @@ function Footer({viewportType}) {
 
   );
 }
-
-Footer.propTypes = {
-  viewportType: PropTypes.string.isRequired,
-};
 
 export default Footer;

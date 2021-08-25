@@ -1,16 +1,20 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {Link} from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import './style.scss';
 import Logo from '../logo/logo';
 import {getClassName} from '../../utils';
 import {AppRoute, HEADER_LINKS, Viewport} from '../../const';
+import { getViewport } from '../../store/page/selectors';
 const ESC_KEY = 'Escape';
 
-function Header({currentPage, viewportType}) {
-  const isMobile = viewportType === Viewport.MOBILE;
+function Header({currentPage}) {
+  const viewportType = useSelector(getViewport);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const isMobile = viewportType === Viewport.MOBILE;
 
   const closeMenu = useCallback(() => setIsMenuOpen(false), [setIsMenuOpen]);
 
@@ -82,8 +86,6 @@ Header.propTypes = {
     link: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
-
-  viewportType: PropTypes.string.isRequired,
 };
 
 export default Header;

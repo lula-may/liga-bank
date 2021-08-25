@@ -1,13 +1,16 @@
 import React, {useCallback, useState} from 'react';
-import PropTypes from 'prop-types';
 import './style.scss';
 
 import ServiceTabs from '../service-tabs/service-tabs';
 import ServiceSlider from '../service-slider/service-slider';
 import {TabType, Viewport} from '../../const';
+import { useSelector } from 'react-redux';
+import { getViewport } from '../../store/page/selectors';
 
-function Services({viewportType}) {
+function Services() {
+  const viewportType = useSelector(getViewport);
   const [activeTab, setActiveTab] = useState(TabType.DEPOSIT);
+
   const onTabClick = useCallback((evt) => {
     const newTab = evt.currentTarget.id;
     if (newTab !== activeTab) {
@@ -34,10 +37,6 @@ function Services({viewportType}) {
 
   return <ServiceSlider viewportType={viewportType}/>;
 }
-
-Services.propTypes = {
-  viewportType: PropTypes.string.isRequired,
-};
 
 export default Services;
 
