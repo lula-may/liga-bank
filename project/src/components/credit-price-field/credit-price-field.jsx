@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 import {clearNumber, getClassName, isValidValue} from '../../utils';
-import { getTotalSum, getValidityStatus } from '../../store/selectors';
+import { getTotalSum, getValidityStatus } from '../../store/credit/selectors';
 import { setTotalPrice, setValidStatus, updateInitialPayment } from '../../store/actions';
 
 function CreditPriceField(props) {

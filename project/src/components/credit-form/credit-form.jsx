@@ -5,8 +5,8 @@ import './style.scss';
 import CreditPurpose from '../credit-purpose/credit-purpose';
 import CreditParameters from '../credit-parameters/credit-parameters';
 import Offer from '../offer/offer';
-import {getFormStep} from '../../store/selectors';
 import RequestForm from '../request-form/request-form';
+import {getFormStep} from '../../store/page/selectors';
 
 function CreditForm() {
   const step = useSelector(getFormStep);

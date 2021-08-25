@@ -1,11 +1,13 @@
 import React, { Fragment, useCallback } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import './style.scss';
 
 import { CreditType, MinLoanSum } from '../../const';
 import { formatMoneyString } from '../../utils';
 import { setStep } from '../../store/actions';
-import { getCreditType, getFormStep, getValidityStatus, selectIsValidLoanSum, selectLoanSum, selectMinIncome, selectMonthlyPayment, selectPercentRate } from '../../store/selectors';
-import './style.scss';
+import { getCreditType, getValidityStatus, selectIsValidLoanSum, selectLoanSum, selectMinIncome, selectMonthlyPayment, selectPercentRate } from '../../store/credit/selectors';
+import { getFormStep } from '../../store/page/selectors';
+
 
 const typeToText = {
   [CreditType.AUTO]: 'автокредита',

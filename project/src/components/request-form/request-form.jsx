@@ -1,11 +1,12 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useSelector} from 'react-redux';
 import NumberFormat from 'react-number-format';
+import './style.scss';
 
 import { CreditType } from '../../const';
-import { getCreditType, getInitialPayment, getPeriod, getRequestNumber, getTotalSum } from '../../store/selectors';
+import { getCreditType, getInitialPayment, getPeriod, getTotalSum } from '../../store/credit/selectors';
+import { getRequestNumber } from '../../store/page/selectors';
 import { formatMoneyString, formatRequestNumber, getPeriodLabel, getClassName } from '../../utils';
-import './style.scss';
 
 const typeToTitle = {
   [CreditType.AUTO]: 'Автокредит',

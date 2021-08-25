@@ -9,7 +9,7 @@ import RangeSlider from '../range-slider/range-slider';
 
 import { getPeriodLabel } from '../../utils';
 import {CreditData, OptionType } from '../../const';
-import {getTotalSum, getInitialPayment, getPaymentRate, getPeriod, getCreditType, getValidityStatus, getCascoStatus, getLifeInsuranceStatus, getMatCapitalStatus} from '../../store/selectors';
+import {getTotalSum, getInitialPayment, getPaymentRate, getPeriod, getCreditType, getValidityStatus, getCascoStatus, getLifeInsuranceStatus, getMatCapitalStatus} from '../../store/credit/selectors';
 import { setCasco, setInitialPayment, setInitialPaymentRate, setLifeInsurance, setMatCapital, setPeriod, updateInitialPaymentRate} from '../../store/actions';
 
 

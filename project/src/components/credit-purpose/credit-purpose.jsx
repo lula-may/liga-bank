@@ -8,7 +8,7 @@ import './style.scss';
 import {getClassName} from '../../utils';
 import { CreditType } from '../../const';
 import {resetOptions, setCreditType, setStep} from '../../store/actions';
-import {getCreditType} from '../../store/selectors';
+import {getCreditType} from '../../store/credit/selectors';
 
 const CreditToTitle = {
   home: 'Ипотечное кредитование',
