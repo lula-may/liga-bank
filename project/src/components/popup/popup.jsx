@@ -2,6 +2,7 @@ import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
+import LoginForm from '../login-form/login-form';
 import ThankYou from '../thank-you/thank-you';
 import { PopupType } from '../../const';
 import { useEffect } from 'react';
@@ -31,7 +32,7 @@ function Popup({id, onClose}) {
     switch (type) {
       case PopupType.LOGIN:
         return (
-          <div className="clas" onButtonClick={onClose}></div>
+          <LoginForm onButtonClick={onClose} />
         );
       case PopupType.THANK_YOU:
         return (

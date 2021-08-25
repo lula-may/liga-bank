@@ -1,18 +1,20 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {Link} from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import './style.scss';
 import Logo from '../logo/logo';
 import {getClassName} from '../../utils';
-import {HEADER_LINKS, Viewport} from '../../const';
+import {HEADER_LINKS, PopupType, Viewport} from '../../const';
 import { getViewport } from '../../store/page/selectors';
+import { setPopup } from '../../store/actions';
 const ESC_KEY = 'Escape';
 
 function Header({currentPage}) {
   const viewportType = useSelector(getViewport);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const isMobile = viewportType === Viewport.MOBILE;
 
@@ -29,6 +31,8 @@ function Header({currentPage}) {
       closeMenu();
     }
   }, [closeMenu]);
+
+  const handleLoginClick = useCallback(() => dispatch(setPopup(PopupType.LOGIN)), [dispatch]);
 
   useEffect(() => (
     isMenuOpen
@@ -68,7 +72,12 @@ function Header({currentPage}) {
           </nav>
           <ul className="main-header__user-nav user-nav">
             <li className="user-nav__item">
-              <button className="user-nav__link" type="button" aria-label="Войти в Интернет-банк">
+              <button
+                className="user-nav__link"
+                type="button"
+                aria-label="Войти в Интернет-банк"
+                onClick={handleLoginClick}
+              >
                 <svg className="user-nav__icon" width="20" height="22"><use xlinkHref="#login"></use></svg>
                 <span className="user-nav__label">Войти в Интернет-банк</span>
               </button>
