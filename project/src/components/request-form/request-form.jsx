@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import NumberFormat from 'react-number-format';
 import './style.scss';
 
-import { CreditType, PopupType } from '../../const';
+import { CreditType, PopupType, StorageField } from '../../const';
 import { getCreditType, getInitialPayment, getPeriod, getTotalSum } from '../../store/credit/selectors';
 import { getRequestNumber } from '../../store/page/selectors';
 import { formatMoneyString, formatRequestNumber, getPeriodLabel, getClassName } from '../../utils';
@@ -39,9 +39,9 @@ function RequestForm() {
     const name = formElement.querySelector('#request-user').value;
     const phone = formElement.querySelector('#request-phone').value;
     const email = formElement.querySelector('#request-email').value;
-    localStorage.setItem('name', name);
-    localStorage.setItem('phone', phone);
-    localStorage.setItem('email', email);
+    localStorage.setItem(StorageField.NAME, name);
+    localStorage.setItem(StorageField.PHONE, phone);
+    localStorage.setItem(StorageField.EMAIL, email);
     dispatch(incrementRequest());
     dispatch(setPopup(PopupType.THANK_YOU));
   }, [dispatch, formElement]);
@@ -86,9 +86,9 @@ function RequestForm() {
       const inputEmail = element.querySelector('#request-email');
       inputName.focus();
       if (localStorage) {
-        inputName.value = localStorage.getItem('name');
-        inputEmail.value = localStorage.getItem('email');
-        setPhone(localStorage.getItem('phone'));
+        inputName.value = localStorage.getItem(StorageField.NAME);
+        inputEmail.value = localStorage.getItem(StorageField.EMAIL);
+        setPhone(localStorage.getItem(StorageField.PHONE));
       }
       setFormElement(element);
     }
