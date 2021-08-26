@@ -7,6 +7,7 @@ const AppRoute = {
   QUESTION: '/query',
 };
 
+const ESC_KEY = 'Escape';
 
 const Navigation = {
   CONTACTS: {
@@ -177,6 +178,7 @@ export {
   Breakpoint,
   CreditData,
   CreditType,
+  ESC_KEY,
   FOOTER_LINKS,
   HEADER_LINKS,
   HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT,

@@ -6,10 +6,9 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import Logo from '../logo/logo';
 import {getClassName} from '../../utils';
-import {HEADER_LINKS, PopupType, Viewport} from '../../const';
+import {ESC_KEY, HEADER_LINKS, PopupType, Viewport} from '../../const';
 import { getViewport } from '../../store/page/selectors';
 import { setPopup } from '../../store/actions';
-const ESC_KEY = 'Escape';
 
 function Header({currentPage}) {
   const viewportType = useSelector(getViewport);
