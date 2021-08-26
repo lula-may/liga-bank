@@ -41,9 +41,11 @@ function Main() {
       <Header
         currentPage={Navigation.CREDIT}
       />
-      <Slider />
-      <Services/>
-      <CreditForm />
+      <main>
+        <Slider />
+        <Services/>
+        <CreditForm />
+      </main>
       <Footer/>
       {isPopupShown && <Popup id={popupName} onClose={closePopup}/>}
     </Fragment>

@@ -1,15 +1,50 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FocusTrap from 'focus-trap-react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-export default function LoginForm({onButtonClick}) {
-  const handleFormSubmit = (evt) => {
-    evt.preventDefault();
-  };
+import { StorageField } from '../../const';
 
-  const handleMouseDown = () => {};
+const FieldType = {
+  TEXT: 'text',
+  PASSWORD: 'password',
+};
+
+function LoginForm({onButtonClick}) {
+  let oldLogin = '';
+  let oldPassword = '';
+
+  if (localStorage) {
+    oldLogin = localStorage.getItem(StorageField.LOGIN) ?? '';
+    oldPassword = localStorage.getItem(StorageField.PASSWORD) ?? '';
+  }
+
+  const loginRef = useRef();
+  const [loginInput, setLoginInput] = useState(null);
+  const [password, setPassword] = useState(oldPassword);
+  const [fieldType, setFieldType] = useState(FieldType.PASSWORD);
+
+  useEffect(() => {
+    if (loginRef.current && loginInput === null) {
+      loginRef.current.focus();
+      setLoginInput(loginRef.current);
+    }
+  }, [loginInput]);
+
+  const handleEyeMouseDown = useCallback(() => setFieldType(FieldType.TEXT), []);
+  const handleEyeMouseUp = useCallback(() => setFieldType(FieldType.PASSWORD), []);
+  const handlePasswordChange = useCallback(({target}) => setPassword(target.value), []);
+
+  const handleFormSubmit = useCallback((evt) => {
+    evt.preventDefault();
+    const login = loginInput.value;
+    if (localStorage) {
+      localStorage.setItem(StorageField.LOGIN, login);
+      localStorage.setItem(StorageField.PASSWORD, password);
+    }
+    onButtonClick();
+  }, [loginInput, onButtonClick, password]);
 
   return (
     <FocusTrap>
@@ -18,19 +53,34 @@ export default function LoginForm({onButtonClick}) {
         <div className="login__logo">
           <img src="./img/logo-login.svg" width="150" height="27" alt="Клиент-банк Лига-банка" />
         </div>
-        <button className="login__close button-close" onClick={onButtonClick} aria-label="Закрыть"></button>
+        <button className="login__close button-close" onClick={onButtonClick} aria-label="Закрыть" />
         <form action="" method="post" id="login-form" onSubmit={handleFormSubmit}>
           <div className="login__field">
             <label htmlFor="login">Логин</label>
-            <input type="text" id="login" name="login" required/>
+            <input
+              ref={loginRef}
+              type="text"
+              id="login"
+              name="login"
+              defaultValue={oldLogin}
+              required
+            />
           </div>
           <div className="login__field">
             <label htmlFor="password">Пароль</label>
-            <input type="password" id="password" name="password" required/>
+            <input
+              type={fieldType}
+              id="password"
+              name="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
             <button
               className="login__toggle-password" type="button"
               aria-label="Показать пароль"
-              onMouseDown={handleMouseDown}
+              onMouseDown={handleEyeMouseDown}
+              onMouseUp={handleEyeMouseUp}
             />
           </div>
           <Link className="login__link" to="/">Забыли пароль?</Link>
@@ -44,3 +94,5 @@ export default function LoginForm({onButtonClick}) {
 LoginForm.propTypes = {
   onButtonClick: PropTypes.func.isRequired,
 };
+
+export default LoginForm;
