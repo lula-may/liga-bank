@@ -1,4 +1,5 @@
 import React, {useMemo} from 'react';
+import { Link } from 'react-router-dom';
 import {Service} from '../../data/services';
 
 import PropTypes from 'prop-types';
@@ -27,7 +28,7 @@ function TabContent({tabName, viewportType}) {
           {isCreditTab ?
             <p>Рассчитайте ежемесячный платеж и ставку по кредиту воспользовавшись нашим <a href="#calculator">кредитным калькулятором</a>
             </p>
-            : <button className="service__button button">Узнать подробнее</button>}
+            : <Link className="service__button button" to="/">Узнать подробнее</Link>}
         </div>
         <div className="service__column service__column--right">
           <div className="service__image">
