@@ -13,6 +13,17 @@ const AppRoute = {
   QUESTION: '/query',
 };
 
+const BRANCHES = [
+  {id: 'Moscow', coords: [55.755819, 37.617644]},
+  {id: 'Saratov', coords: [51.533562, 46.034266]},
+  {id: 'Kazan', coords: [55.796127, 49.106414]},
+  {id: 'Tumen', coords: [57.152985, 65.541227]},
+  {id: 'Omsk', coords: [54.989347, 73.368221]},
+  {id: 'Surgut', coords: [61.254035, 73.396230]},
+  {id: 'Perm', coords: [58.010455, 56.229443]},
+  {id: 'Novosibirsk', coords: [55.030204, 82.920430]},
+];
+
 const Breakpoint = {
   DESKTOP: 1024,
   TABLET: 768,
@@ -182,6 +193,7 @@ const FOOTER_LINKS = [Navigation.SERVICES, Navigation.CREDIT, Navigation.CONTACT
 export {
   AppRoute,
   AUTO_TOTAL_PRICE_FOR_DISCOUNT,
+  BRANCHES,
   Breakpoint,
   CreditData,
   CreditType,

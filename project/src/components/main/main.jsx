@@ -12,6 +12,7 @@ import { defineViewportWidth } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import {getPopup, getViewport } from '../../store/page/selectors';
 import { setPopup, setViewport } from '../../store/actions';
+import Branches from '../branches/branches';
 
 function Main() {
   const viewport = useSelector(getViewport);
@@ -45,6 +46,7 @@ function Main() {
         <Slider />
         <Services/>
         <CreditForm />
+        <Branches />
       </main>
       <Footer/>
       {isPopupShown && <Popup id={popupName} onClose={closePopup}/>}
