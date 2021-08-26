@@ -6,7 +6,7 @@
   h3 {
     max-width: 70%;
     margin: 0;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 
     font-size: $font-size-basic * 3;
     line-height: normal;
@@ -18,7 +18,7 @@
     margin: 0;
     margin-bottom: 33px;
 
-    font-size: $font-size-label;
+    font-size: $font-size-subheading;
     line-height: normal;
     font-weight: normal;
     color: $text-clr-light;
@@ -94,7 +94,7 @@
 .slide__wrapper {
   @include container();
 
-  padding: 100px 170px;
+  padding: 103px 268px;
 }
 
 @media (max-width: $tablet-width) {
@@ -102,7 +102,7 @@
     background-size: 768px 300px, 100%;
 
     &--1 {
-      background-position: calc(50% + 10px) bottom;
+      background-position: 50% bottom;
       background-image: url("../img/cards-tablet.jpg");
 
       @media (min-resolution: 2dppx) {
@@ -137,23 +137,23 @@
     }
 
     h3 {
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       font-size: $font-size-bold-tbl;
     }
 
     p {
-      margin-bottom: 28px;
+      margin-bottom: 29px;
       font-size: $font-size-basic;
     }
 
     .slide__button {
-      padding: 18px 31px;
+      padding: 15px 31px 14px;
       font-size: $font-size-label;
     }
   }
 
   .slide__wrapper {
-    padding: 60px 11.2%;
+    padding: 65px 11.2%;
   }
 }
 
@@ -167,6 +167,7 @@
     }
 
     p {
+      margin-bottom: 26px;
       font-size: $font-size-label;
     }
 

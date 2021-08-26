@@ -48,7 +48,7 @@
   display: flex;
   align-items: center;
   height: 60px;
-  padding: 0 24px;
+  padding: 2px 24px 0;
 
   font-weight: 500;
 
@@ -61,13 +61,17 @@
 }
 
 @mixin dark-button () {
-  padding: 16px 30px 16px;
+  padding: 16px 30px 13px;
 
   font-size: $font-size-label;
   line-height: 1.4;
   color: $bg-light;
   text-align: center;
   background-color: $bg-dark;
+
+  @media (max-width: $tablet-width) {
+    padding: 14px 30px 12px;
+  }
 
   @media (max-width: $mobile-width) {
     padding-top: 14px;

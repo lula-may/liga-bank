@@ -9,22 +9,31 @@
     height: 362px;
     margin-bottom: 53px;
   }
-}
 
-.swiper-pagination-bullet {
-  background-color: $bg-bullet;
-  opacity: 1;
+  .swiper-pagination-bullets {
+    bottom: 15px;
 
-  &-active {
-    background-color: $bg-bullet-light;
+    .swiper-pagination-bullet {
+      background-color: $bg-bullet;
+      opacity: 1;
+
+      &-active {
+        background-color: $bg-bullet-light;
+      }
+    }
   }
 
   @media (max-width: $mobile-width) {
-    width: 6px;
-    height: 6px;
+    .swiper-pagination-bullets {
+      bottom: 5px;
+
+      .swiper-pagination-bullet {
+        width: 6px;
+        height: 6px;
+        margin: 0 3px;
+      }
+    }
   }
 }
 
-.swiper-pagination-bullets {
-  bottom: 15px;
-}
+

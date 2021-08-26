@@ -20,16 +20,28 @@
   }
 
   h3 {
+    margin: 20px 0 18px;
+
     font-size: $font-size-basic;
     line-height: normal;
     color: $text-clr-tabs;
     font-weight: 500;
   }
+
+  &--services {
+    .tabs__icon {
+      margin-right: 0;
+    }
+
+    h3 {
+      padding-right: 9px;
+    }
+  }
 }
 
 .tabs__icon {
   width: 34px;
-  height: 30px;
+  height: 34px;
   margin-right: 10px;
 
   color: $bg-icon;

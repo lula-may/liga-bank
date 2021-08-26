@@ -5,6 +5,14 @@
     color: $text-clr-footer;
   }
 
+  .input-range__label-container {
+    left: -25%;
+  }
+
+  .input-range__label--max .input-range__label-container {
+    left: 15%;
+  }
+
   .input-range__track {
     height: 1px;
 

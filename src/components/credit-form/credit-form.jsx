@@ -17,7 +17,7 @@ function CreditForm() {
   return (
     <section className="credit-form" id="calculator">
       <div className="credit-form__wrapper">
-        <h2 className="credit-form__title">Кредитный калькулятор</h2>
+        <h2>Кредитный калькулятор</h2>
         <div className="credit-form__container">
           <div className="credit-form__parameters">
             <div className="credit-form__step step">

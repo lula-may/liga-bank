@@ -1,12 +1,12 @@
 .service {
-  padding: 54px 70px 60px;
+  padding: 56px 70px 60px;
   color: $text-clr-basic;
   background-color: $bg-light;
 
   h2 {
     max-width: 410px;
     margin: 0;
-    margin-bottom: 32px;
+    margin-bottom: 29px;
 
     font-size: $font-size-subheading;
     line-height: 1.4;
@@ -20,6 +20,7 @@
 
   .service__button {
     @include dark-button();
+    display: inline-block;
   }
 
   a {
@@ -55,6 +56,8 @@
 .service__image {
   width: 440px;
   height: 290px;
+  margin-left: 12px;
+  margin-top: 5px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -66,7 +69,7 @@
 .service__features {
   @include list-reset();
   width: 400px;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 
   font-size: $font-size-basic;
   line-height: 1.3;
@@ -118,6 +121,8 @@
 
   .service__features {
     max-width: 100%;
+    margin-bottom: 17px;
+
     font-size: $font-size-label;
   }
 
@@ -125,6 +130,7 @@
     max-width: 390px;
     width: 100%;
     height: 260px;
+    margin: 0;
 
     img {
       height: 100%;
@@ -137,12 +143,12 @@
   .service {
     padding-right: 0;
     padding-left: 15px;
-    padding-top: 45px;
+    padding-top: 55px;
 
     h2 {
       max-width: 370px;
       width: 75%;
-      margin-bottom: 15px;
+      margin-bottom: 22px;
       font-size: $font-size-label;
       line-height: 1.4;
     }
@@ -160,7 +166,8 @@
     }
 
     .service__button {
-      width: calc(100% - 74px);
+      width: calc(100% - 55px);
+      padding: 13px 20px 11px;
     }
   }
 
@@ -200,7 +207,17 @@
     max-width: 330px;
     width: 74%;
     min-height: 105px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-size: $font-size-tablet;
+  }
+
+  .service__item {
+    padding-left: 14px;
+    padding-bottom: 12px;
+
+    &::before {
+      top: 2px;
+      width: 10px;
+    }
   }
 }

@@ -17,7 +17,7 @@ function CreditPriceField(props) {
   const currentPrice = useSelector(getTotalSum);
   const dispatch = useDispatch();
 
-  const infoText = useMemo(() => `От ${min.toLocaleString('ru-RU')} до ${max.toLocaleString('ru-RU')}`, [max, min]);
+  const infoText = useMemo(() => `От ${min.toLocaleString('ru-RU')} до ${max.toLocaleString('ru-RU')} рублей`, [max, min]);
 
   const isMinPrice = currentPrice === min;
   const isMaxPrice = currentPrice === max;

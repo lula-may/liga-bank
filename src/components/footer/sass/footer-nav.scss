@@ -1,6 +1,6 @@
 .footer-nav {
   @include list-reset();
-  padding-top: 6px;
+  padding-top: 8px;
 }
 
 .footer-nav__item {
@@ -24,5 +24,15 @@
 
   &:visited {
     color: $text-clr-basic;
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .footer-nav__item {
+    margin-bottom: 10px;
+  }
+
+  .footer-nav__link {
+    font-size: $font-size-tablet;
   }
 }

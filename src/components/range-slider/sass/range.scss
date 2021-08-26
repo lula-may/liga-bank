@@ -1,6 +1,6 @@
 .range {
   width: calc(100% - 14px);
-  margin: 8px auto;
+  margin: 15px auto;
   padding-bottom: 20px;
 }
 
@@ -69,4 +69,10 @@
   background-color: $bg-dark;
   border-radius: 50%;
   cursor: pointer;
+}
+
+@media (max-width: $mobile-width) {
+  .range {
+    margin: 15px auto 11px;
+  }
 }

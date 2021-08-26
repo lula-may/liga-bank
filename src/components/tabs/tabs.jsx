@@ -17,7 +17,7 @@ function Tabs({activeTab, onClick}) {
           <li
             key={type}
             id={type}
-            className={getClassName('tabs__item', isActive && 'tabs__item--active')} tabIndex={0}
+            className={getClassName('tabs__item', `tabs__item--${type}`, isActive && 'tabs__item--active')} tabIndex={0}
             onClick={onClick}
           >
             <svg className="tabs__icon" width="34" height="30">
