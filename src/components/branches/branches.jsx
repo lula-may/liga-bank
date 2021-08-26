@@ -7,7 +7,7 @@ import {BRANCHES} from '../../const';
 function Branches() {
   return (
     <YMaps>
-      <section className="branches">
+      <section className="branches" id="branches">
         <div className="branches__wrapper">
           <h2>Отделения Лига Банка</h2>
           <Map className="branches__map"

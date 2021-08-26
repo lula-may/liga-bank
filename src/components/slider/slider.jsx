@@ -1,8 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import SwiperCore, {Pagination, Autoplay} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/react';
-
+import {Link} from 'react-scroll';
 // Import Swiper styles
 import 'swiper/swiper.scss';
 import 'swiper/components/pagination/pagination.scss';
@@ -25,7 +24,14 @@ export default function Slider() {
         <div className="slide__wrapper">
           <h3>Лига Банк</h3>
           <p>Кредиты на любой случай</p>
-          <a className="slide__button  button" href="#calculator">Рассчитать кредит</a>
+          <Link
+            className="slide__button  button"
+            duration={500}
+            smooth
+            offset={-30}
+            to="calculator"
+          >Рассчитать кредит
+          </Link>
         </div>
       </SwiperSlide>
       <SwiperSlide className="swiper-slide slide slide--2 slide--light">
@@ -38,7 +44,14 @@ export default function Slider() {
         <div className="slide__wrapper">
           <h3>Лига Банк</h3>
           <p>Всегда рядом</p>
-          <Link className="slide__button button" to="/">Найти отделение</Link>
+          <Link
+            className="slide__button button"
+            duration={500}
+            smooth
+            offset={-30}
+            to="branches"
+          >Найти отделение
+          </Link>
         </div>
       </SwiperSlide>
     </Swiper>
