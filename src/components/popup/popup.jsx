@@ -26,12 +26,12 @@ function Popup({id, onClose}) {
   useEffect(() => {
     if (isVerticalScroll()) {
       document.body.style.top = `-${pageTopPosition}px`;
-      document.body.classList.add('body-lock');
+      document.body.classList.add('page--lock');
     }
 
     return () => {
       if (isVerticalScroll()) {
-        document.body.classList.remove('body-lock');
+        document.body.classList.remove('page--lock');
         document.body.style = void 0;
         window.scrollTo(0, pageTopPosition);
       }

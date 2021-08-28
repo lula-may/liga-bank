@@ -1,26 +1,3 @@
-body {
-  position: relative;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-
-  @include basic-text();
-
-  background-color: $bg-basic;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
 @keyframes shake {
   0%,
   100% {
@@ -43,8 +20,31 @@ img {
   }
 }
 
-.body-lock {
-  position: fixed;
-  overflow-y: scroll;
+.page {
+  position: relative;
+  box-sizing: border-box;
   width: 100%;
+  margin: 0;
+  padding: 0;
+
+  @include basic-text();
+
+  background-color: $bg-basic;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  &--lock {
+    position: fixed;
+    overflow-y: scroll;
+  }
 }
