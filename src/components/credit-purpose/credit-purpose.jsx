@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 import {getClassName} from '../../utils';
-import { CreditType } from '../../const';
-import {resetOptions, setCreditType, setStep} from '../../store/actions';
+import {CreditData, CreditType} from '../../const';
+import {resetOptions, setCreditType, setInitialPayment, setInitialPaymentRate, setPeriod, setTotalPrice, setStep} from '../../store/actions';
 import {getCreditType} from '../../store/credit/selectors';
 
 const CreditToTitle = {
@@ -22,12 +22,24 @@ function CreditPurpose({className}) {
   const [isOpen, setOpenStatus] = useState(false);
   const dispatch = useDispatch();
 
-  const handleOptionClick = useCallback((evt) => {
-    setOpenStatus(false);
-    dispatch(setCreditType(evt.target.id));
+  const resetCreditParameters = useCallback((type) => {
+    const {totalSum: {min: minTotalPrice}, initialPayment: {min: minInitialRate}, period: {min: minPeriod}} = CreditData[type];
+    const mintInitialPayment = minInitialRate * minTotalPrice / 100;
+
+    dispatch(setCreditType(type));
+    dispatch(setTotalPrice(minTotalPrice));
+    dispatch(setInitialPayment(mintInitialPayment));
+    dispatch(setInitialPaymentRate(minInitialRate));
+    dispatch(setPeriod(minPeriod));
     dispatch(resetOptions());
-    dispatch(setStep(2));
   }, [dispatch]);
+
+  const handleOptionClick = useCallback((evt) => {
+    const type = evt.target.id;
+    setOpenStatus(false);
+    resetCreditParameters(type);
+    dispatch(setStep(2));
+  }, [dispatch, resetCreditParameters]);
 
   const handleSelectClick = useCallback(() => setOpenStatus((prev) => !prev), []);
 
