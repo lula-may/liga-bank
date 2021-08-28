@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import {NameSpace} from '../root-reducer';
 
-import { AUTO_TOTAL_PRICE_FOR_DISCOUNT, CreditType, HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT, INCOME_RATE, MAT_CAPITAL, MinLoanSum, Percentage } from '../../const';
+import { AUTO_TOTAL_PRICE_FOR_DISCOUNT, CreditData, CreditType, HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT, INCOME_RATE, MAT_CAPITAL, Percentage } from '../../const';
 import { getAnnuityPayment } from '../../utils';
 
 export const getCreditType = (state) => state[NameSpace.CREDIT].creditType;
@@ -38,7 +38,7 @@ export const selectLoanSum = createSelector(
 export const selectIsValidLoanSum = createSelector(
   getCreditType,
   selectLoanSum,
-  (type, sum) => sum >= MinLoanSum[type],
+  (type, sum) => sum >= CreditData[type].minLoanSum,
 );
 
 const selectAutoPercentRate = createSelector(

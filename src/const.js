@@ -34,11 +34,6 @@ const CreditType = {
   HOME: 'home',
 };
 
-const MinLoanSum = {
-  auto: 200000,
-  home: 500000,
-};
-
 const OptionType = {
   CASCO: 'casco',
   LIFE_INSURANCE: 'life-insurance',
@@ -114,6 +109,7 @@ const CreditData = {
       step: 5,
       unit: '%',
     },
+    minLoanSum: 500000,
     period: {
       label: 'Срок кредитования',
       min: 5,
@@ -142,6 +138,7 @@ const CreditData = {
       step: 5,
       unit: '%',
     },
+    minLoanSum: 200000,
     period: {
       label: 'Срок кредитования',
       min: 1,
@@ -203,7 +200,6 @@ export {
   HOME_FIRST_PAYMENT_RATE_FOR_DISCOUNT,
   INCOME_RATE,
   MAT_CAPITAL,
-  MinLoanSum,
   Navigation,
   OptionType,
   Percentage,

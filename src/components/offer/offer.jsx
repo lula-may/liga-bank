@@ -2,7 +2,7 @@ import React, { Fragment, useCallback } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import './style.scss';
 
-import { CreditType, MinLoanSum } from '../../const';
+import { CreditType, CreditData } from '../../const';
 import { formatMoneyString } from '../../utils';
 import { setStep } from '../../store/actions';
 import { getCreditType, getValidityStatus, selectIsValidLoanSum, selectLoanSum, selectMinIncome, selectMonthlyPayment, selectPercentRate } from '../../store/credit/selectors';
@@ -29,6 +29,7 @@ function Offer() {
   const monthlyIncome = useSelector(selectMinIncome);
   const formStep = useSelector(getFormStep);
   const isDisabled = formStep === 3;
+  const {minLoanSum} = CreditData[creditType];
   const dispatch = useDispatch();
 
   const onButtonClick = useCallback(() => dispatch(setStep(3)), [dispatch]);
@@ -42,7 +43,7 @@ function Offer() {
     if (!isValidLoan) {
       return (
         <Fragment>
-          <h3>Наш банк не выдает {typeToMessage[creditType]} меньше {MinLoanSum[creditType].toLocaleString('ru-RU')} рублей.</h3>
+          <h3>Наш банк не выдает {typeToMessage[creditType]} меньше {minLoanSum.toLocaleString('ru-RU')} рублей.</h3>
           <p>Попробуйте использовать другие параметры для расчета.</p>
         </Fragment>
       );
