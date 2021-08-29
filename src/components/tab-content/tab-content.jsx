@@ -5,13 +5,33 @@ import {Service} from '../../data/services';
 import PropTypes from 'prop-types';
 import './style.scss';
 import { getClassName } from '../../utils';
-import {TabType} from '../../const';
+import {TabType, Viewport} from '../../const';
 
+const getImgSize = (viewportType) => {
+  switch (viewportType) {
+    case Viewport.MOBILE:
+      return ({
+        width: '125',
+        height: '113',
+      });
+    case Viewport.TABLET:
+      return ({
+        width: '395',
+        height: '260',
+      });
+    default:
+      return ({
+        width: '440',
+        height: '290',
+      });
+  }
+};
 function TabContent({tabName, viewportType}) {
   const {title, features, imageUrl} = Service[tabName];
   const imageSrc = imageUrl[viewportType];
   const className = useMemo(() => getClassName('service', `service--${tabName}`), [tabName]);
   const isCreditTab = tabName === TabType.CREDIT;
+  const {width, height} = getImgSize(viewportType);
 
   return (
     <article className={className}>
@@ -32,7 +52,7 @@ function TabContent({tabName, viewportType}) {
         </div>
         <div className="service__column service__column--right">
           <div className="service__image">
-            <img src={imageSrc} alt={title} />
+            <img src={imageSrc} width={width} height={height} alt={title} />
           </div>
         </div>
       </div>
