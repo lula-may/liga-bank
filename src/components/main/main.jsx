@@ -1,6 +1,5 @@
-import React, {Fragment, useEffect, useCallback} from 'react';
+import React, {Fragment, lazy, Suspense, useEffect, useCallback} from 'react';
 
-import CreditForm from '../credit-form/credit-form';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import Popup from '../popup/popup';
@@ -12,7 +11,10 @@ import { defineViewportWidth } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import {getPopup, getViewport } from '../../store/page/selectors';
 import { setPopup, setViewport } from '../../store/actions';
-import Branches from '../branches/branches';
+
+const Branches = lazy(() => import('../branches/branches'));
+const CreditForm = lazy(() => import('../credit-form/credit-form'));
+const renderLoader = () => <p>Loading</p>;
 
 function Main() {
   const viewport = useSelector(getViewport);
@@ -45,8 +47,10 @@ function Main() {
       <main>
         <Slider />
         <Services/>
-        <CreditForm />
-        <Branches />
+        <Suspense fallback={renderLoader()}>
+          <CreditForm />
+          <Branches />
+        </Suspense>
       </main>
       <Footer/>
       {isPopupShown && <Popup id={popupName} onClose={closePopup}/>}
