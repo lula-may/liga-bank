@@ -38,9 +38,9 @@ const Service = {
     ],
 
     imageUrl: {
-      desktop: './img/car.png',
-      tablet: './img/car-tablet.png',
-      mobile: './img/car-mobile.png',
+      desktop: './img/car.jpg',
+      tablet: './img/car-tablet.jpg',
+      mobile: './img/car-mobile.jpg',
     },
     title: 'Лига Банк выдает кредиты под любые цели',
   },
@@ -71,7 +71,7 @@ const Service = {
       {
         id: 'services-1',
         text: `Мобильный банк,
-который всегда под рукой`,
+который\u00a0всегда\u00a0под рукой`,
       },
       {
         id: 'services-2',

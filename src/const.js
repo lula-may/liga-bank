@@ -30,8 +30,8 @@ const Breakpoint = {
 };
 
 const CreditType = {
-  AUTO: 'auto',
   HOME: 'home',
+  AUTO: 'auto',
 };
 
 const OptionType = {
