@@ -121,10 +121,10 @@ function RequestForm() {
             <NumberFormat
               id="request-phone"
               name="request-phone"
-              format="+#(###) ###-##-##"
+              format="+7(###) ###-##-##"
               mask="_"
               type="tel"
-              pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
+              pattern="\+7\s?[\(]{0,1}[0-9]{3}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
               placeholder="Телефон"
               value={currentPhone}
               onValueChange={({formattedValue}) => setPhone(formattedValue)}
