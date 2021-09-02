@@ -46,7 +46,7 @@ function TabContent({tabName, viewportType}) {
             ))}
           </ul>
           {isCreditTab ?
-            <p>Рассчитайте ежемесячный платеж и ставку по кредиту воспользовавшись нашим <a href="#calculator">кредитным калькулятором</a>
+            <p>Рассчитайте ежемесячный платеж и&nbsp;ставку&nbsp;по кредиту воспользовавшись нашим <a href="#calculator">кредитным калькулятором</a>
             </p>
             : <Link className="service__button button" to="/">Узнать подробнее</Link>}
         </div>

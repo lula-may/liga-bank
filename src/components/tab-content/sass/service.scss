@@ -100,6 +100,7 @@
   .service {
     padding-left: 45px;
     padding-right: 45px;
+    padding-top: 55px;
 
     h2 {
       margin-bottom: 24px;
@@ -116,14 +117,24 @@
     }
     &--right {
       width: calc(100% - 390px);
+      margin-top: 5px;
     }
   }
 
   .service__features {
     max-width: 100%;
-    margin-bottom: 17px;
+    margin-bottom: 15px;
 
     font-size: $font-size-label;
+  }
+
+  .service__item {
+    padding-bottom: 16px;
+
+    &::before {
+      top: 4px;
+      left: -1px;
+    }
   }
 
   .service__image {
@@ -142,8 +153,7 @@
 @media (max-width: $mobile-width) {
   .service {
     padding-right: 0;
-    padding-left: 15px;
-    padding-top: 55px;
+    padding-left: 5%;
 
     h2 {
       max-width: 370px;
@@ -166,11 +176,10 @@
     }
 
     .service__button {
-      width: calc(100% - 55px);
+      width: 95%;
       padding: 13px 20px 11px;
     }
   }
-
 
   .service__column {
     &--left {
@@ -185,6 +194,7 @@
       left: 73%;
       right: 0;
       width: auto;
+      margin-top: -3px;
       z-index: 0;
     }
   }
@@ -198,7 +208,7 @@
     justify-content: flex-start;
 
     img {
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 
@@ -206,7 +216,6 @@
     min-width: 240px;
     max-width: 330px;
     width: 74%;
-    min-height: 105px;
     margin-bottom: 12px;
     font-size: $font-size-tablet;
   }

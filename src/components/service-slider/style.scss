@@ -2,7 +2,7 @@
 
 .service-slider {
   height: 380px;
-  margin-bottom: 70px;
+  margin-bottom: 68px;
   background-color: $bg-light;
 
   @media (max-width: $mobile-width) {
@@ -11,7 +11,7 @@
   }
 
   .swiper-pagination-bullets {
-    bottom: 15px;
+    bottom: 10px;
 
     .swiper-pagination-bullet {
       background-color: $bg-bullet;

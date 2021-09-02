@@ -14,7 +14,7 @@
   @include container();
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .main-header__logo {
@@ -67,6 +67,7 @@
 
   .main-header__wrapper {
     position: relative;
+    align-items: center;
   }
 
   .main-header__logo {

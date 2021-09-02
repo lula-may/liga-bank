@@ -2,5 +2,14 @@
   margin-bottom: 96px;
 }
 .services__container {
-  @include container();
+  width: calc(100% - 40px);
+  max-width: $width-basic;
+  margin: 0 auto;
+}
+
+@media (max-width: $tablet-width) {
+  .services__container {
+    width: 100%;
+    margin: 0;
+  }
 }
