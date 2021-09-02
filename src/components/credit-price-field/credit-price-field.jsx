@@ -26,31 +26,35 @@ function CreditPriceField(props) {
 
   const decrementPrice = useCallback(() => (currentPrice - step < min) ? min : currentPrice - step, [currentPrice, min, step]);
 
+  const doOnPriceChange = useCallback((value) => {
+    const isNewValueValid = isValidValue(value, min, max);
+    dispatch(setTotalPrice(value));
+    if (isValid !== isNewValueValid) {
+      dispatch(setValidStatus(!isValid));
+    }
+    if (isNewValueValid) {
+      dispatch(updateInitialPayment());
+    }
+  }, [dispatch, isValid, max, min]);
+
   const handlePriceChange = useCallback((evt) => {
     const newValue = clearNumber(evt.target.value);
     if (newValue !== currentPrice) {
-      const isNewValueValid = isValidValue(newValue, min, max);
-      if (isValid !== isNewValueValid) {
-        dispatch(setValidStatus(!isValid));
-      }
-      dispatch(setTotalPrice(newValue));
-      if (isNewValueValid) {
-        dispatch(updateInitialPayment());
-      }
+      doOnPriceChange(newValue);
     }
-  }, [currentPrice, dispatch, isValid, max, min]);
+  }, [currentPrice, doOnPriceChange]);
 
   const handleMinusClick = useCallback((evt) => {
     evt.preventDefault();
-    dispatch(setTotalPrice(decrementPrice()));
-    dispatch(updateInitialPayment());
-  }, [decrementPrice, dispatch]);
+    const newValue = decrementPrice();
+    doOnPriceChange(newValue);
+  }, [decrementPrice, doOnPriceChange]);
 
   const handlePlusClick = useCallback((evt) => {
     evt.preventDefault();
-    dispatch(setTotalPrice(incrementPrice()));
-    dispatch(updateInitialPayment());
-  }, [incrementPrice, dispatch]);
+    const newValue = incrementPrice();
+    doOnPriceChange(newValue);
+  }, [incrementPrice, doOnPriceChange]);
 
   return (
     <div className={getClassName('price-field', !isValid && 'price-field--invalid')}>
