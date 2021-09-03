@@ -17,11 +17,15 @@ function Header({currentPage}) {
 
   const isMobile = viewportType === Viewport.MOBILE;
 
-  const closeMenu = useCallback(() => setIsMenuOpen(false), [setIsMenuOpen]);
+  const closeMenu = useCallback(() => {
+    setIsMenuOpen(false);
+    document.body.classList.remove('page--lock');
+  }, [setIsMenuOpen]);
 
   const openMenu = useCallback(() => {
     if (!isMenuOpen) {
       setIsMenuOpen(true);
+      document.body.classList.add('page--lock');
     }
   }, [isMenuOpen, setIsMenuOpen]);
 
@@ -38,6 +42,13 @@ function Header({currentPage}) {
       ? document.addEventListener('keydown', handleEscKeyDown)
       : document.removeEventListener('keydown', handleEscKeyDown)
   ), [handleEscKeyDown, isMenuOpen]);
+
+  useEffect(() => {
+    if (isMenuOpen && !isMobile) {
+      setIsMenuOpen(false);
+      document.body.classList.remove('page--lock');
+    }
+  }, [isMenuOpen, isMobile]);
 
   const headerClassName = useMemo(() => getClassName('main-header', isMenuOpen ? 'main-header--open' : 'main-header--close'), [isMenuOpen]);
 
