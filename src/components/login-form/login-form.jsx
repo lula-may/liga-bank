@@ -33,7 +33,9 @@ function LoginForm({onButtonClick}) {
   }, [loginInput]);
 
   const handleEyeMouseDown = useCallback(() => setFieldType(FieldType.TEXT), []);
+  const handleEyeTouchStart = useCallback(() => setFieldType(FieldType.TEXT), []);
   const handleEyeMouseUp = useCallback(() => setFieldType(FieldType.PASSWORD), []);
+  const handleEyeTouchEnd = useCallback(() => setFieldType(FieldType.PASSWORD), []);
   const handlePasswordChange = useCallback(({target}) => setPassword(target.value), []);
 
   const handleFormSubmit = useCallback((evt) => {
@@ -81,6 +83,8 @@ function LoginForm({onButtonClick}) {
               aria-label="Показать пароль"
               onMouseDown={handleEyeMouseDown}
               onMouseUp={handleEyeMouseUp}
+              onTouchStart={handleEyeTouchStart}
+              onTouchEnd={handleEyeTouchEnd}
             />
           </div>
           <Link className="login__link" to="/">Забыли пароль?</Link>
